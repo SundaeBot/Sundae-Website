@@ -30,21 +30,19 @@
       content: "";
       position: fixed;
       inset: 0;
+      z-index: -2;
 
       background:
         radial-gradient(
-          circle at 20% 10%,
-          rgba(139, 92, 246, 0.16),
+          circle at 15% 10%,
+          rgba(139, 92, 246, 0.15),
           transparent 30%
         ),
         radial-gradient(
-          circle at 80% 30%,
-          rgba(124, 58, 237, 0.12),
+          circle at 85% 35%,
+          rgba(124, 58, 237, 0.10),
           transparent 30%
         );
-
-      pointer-events: none;
-      z-index: -2;
     }
 
     /* PARTICLES */
@@ -53,60 +51,56 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      z-index: -1;
       overflow: hidden;
+      z-index: -1;
     }
 
     .particle {
       position: absolute;
-
-      width: 5px;
-      height: 5px;
-
+      width: 4px;
+      height: 4px;
       border-radius: 50%;
-
       background: rgba(167, 139, 250, 0.5);
-
-      animation: particleFloat linear infinite;
+      animation: floatParticle linear infinite;
     }
 
     .particle:nth-child(1) {
       left: 10%;
-      top: 80%;
-      animation-duration: 9s;
-    }
-
-    .particle:nth-child(2) {
-      left: 25%;
-      top: 60%;
-      animation-duration: 12s;
-    }
-
-    .particle:nth-child(3) {
-      left: 45%;
       top: 90%;
       animation-duration: 10s;
     }
 
+    .particle:nth-child(2) {
+      left: 25%;
+      top: 80%;
+      animation-duration: 13s;
+    }
+
+    .particle:nth-child(3) {
+      left: 45%;
+      top: 95%;
+      animation-duration: 11s;
+    }
+
     .particle:nth-child(4) {
       left: 65%;
-      top: 70%;
-      animation-duration: 13s;
+      top: 85%;
+      animation-duration: 14s;
     }
 
     .particle:nth-child(5) {
       left: 80%;
-      top: 85%;
-      animation-duration: 11s;
+      top: 90%;
+      animation-duration: 12s;
     }
 
     .particle:nth-child(6) {
-      left: 90%;
-      top: 50%;
-      animation-duration: 14s;
+      left: 92%;
+      top: 70%;
+      animation-duration: 15s;
     }
 
-    @keyframes particleFloat {
+    @keyframes floatParticle {
       from {
         transform: translateY(0);
         opacity: 0;
@@ -129,22 +123,33 @@
       top: 0;
       z-index: 1000;
 
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      width: 100%;
 
-      padding: 18px 7%;
-
-      background: rgba(8, 8, 15, 0.82);
-      backdrop-filter: blur(15px);
+      background: rgba(8, 8, 15, 0.88);
+      backdrop-filter: blur(18px);
 
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
-    .brand {
+    .nav-inner {
+      width: min(1150px, calc(100% - 32px));
+      min-height: 70px;
+
+      margin: auto;
+
       display: flex;
       align-items: center;
-      gap: 10px;
+      justify-content: space-between;
+
+      gap: 20px;
+    }
+
+    .brand {
+      flex-shrink: 0;
+
+      display: flex;
+      align-items: center;
+      gap: 9px;
 
       color: white;
       text-decoration: none;
@@ -153,33 +158,51 @@
       font-weight: 800;
     }
 
-    .brand span {
+    .brand-logo {
       font-size: 28px;
+      line-height: 1;
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 25px;
+      justify-content: flex-end;
+
+      gap: 8px;
+
+      flex-wrap: wrap;
     }
 
     .nav-links a {
-      color: #aaa;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 9px 13px;
+
+      border-radius: 10px;
+
+      color: #9d9daa;
       text-decoration: none;
 
-      font-weight: 600;
+      font-size: 14px;
+      font-weight: 700;
 
-      transition: 0.25s;
+      transition: 0.2s;
     }
 
     .nav-links a:hover {
       color: white;
+      background: rgba(255,255,255,0.05);
     }
 
-    .nav-button {
-      padding: 10px 17px;
+    .nav-links .active {
+      color: white;
+      background: rgba(139,92,246,0.12);
+    }
 
-      border-radius: 10px;
+    .nav-links .add-button {
+      color: white;
 
       background: linear-gradient(
         135deg,
@@ -187,35 +210,43 @@
         #6d28d9
       );
 
-      color: white !important;
-
       box-shadow:
-        0 0 25px rgba(139,92,246,.25);
+        0 5px 20px rgba(109,40,217,0.2);
+    }
+
+    .nav-links .add-button:hover {
+      background: linear-gradient(
+        135deg,
+        #9d72ff,
+        #7c3aed
+      );
     }
 
     /* HERO */
 
     .hero {
-      min-height: 90vh;
+      min-height: 82vh;
 
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
 
       text-align: center;
 
-      padding: 80px 20px;
+      padding: 80px 20px 60px;
     }
 
     .hero-logo {
-      font-size: 110px;
+      font-size: clamp(70px, 12vw, 110px);
+
+      line-height: 1;
 
       display: inline-block;
 
       filter:
         drop-shadow(
-          0 0 35px rgba(139,92,246,.35)
+          0 0 35px rgba(139,92,246,0.35)
         );
 
       animation:
@@ -224,25 +255,25 @@
 
     @keyframes heroFloat {
       0%, 100% {
-        transform: translateY(0) rotate(0deg);
+        transform: translateY(0);
       }
 
       50% {
-        transform: translateY(-12px) rotate(2deg);
+        transform: translateY(-12px);
       }
     }
 
     .hero h1 {
-      margin-top: 20px;
+      margin-top: 24px;
 
-      font-size: clamp(48px, 8vw, 85px);
+      font-size: clamp(50px, 9vw, 85px);
 
       background: linear-gradient(
         90deg,
-        #ffffff,
+        #fff,
         #c4b5fd,
         #8b5cf6,
-        #ffffff
+        #fff
       );
 
       background-size: 250%;
@@ -250,8 +281,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
 
-      animation:
-        gradientMove 5s linear infinite;
+      animation: gradientMove 5s linear infinite;
     }
 
     @keyframes gradientMove {
@@ -267,11 +297,11 @@
     .hero p {
       max-width: 650px;
 
-      margin-top: 20px;
+      margin-top: 18px;
 
       color: #9999a8;
 
-      font-size: 18px;
+      font-size: 17px;
       line-height: 1.6;
     }
 
@@ -279,20 +309,20 @@
 
     .hero-buttons {
       display: flex;
-
       justify-content: center;
-
-      gap: 15px;
-
       flex-wrap: wrap;
 
-      margin-top: 35px;
+      gap: 12px;
+
+      margin-top: 32px;
     }
 
     .button {
-      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
 
-      padding: 15px 24px;
+      padding: 14px 21px;
 
       border-radius: 12px;
 
@@ -302,43 +332,13 @@
 
       font-weight: 700;
 
-      overflow: hidden;
-
       transition:
-        transform .25s,
-        box-shadow .25s;
-    }
-
-    .button::after {
-      content: "";
-
-      position: absolute;
-
-      top: 0;
-      left: -100%;
-
-      width: 70%;
-      height: 100%;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          rgba(255,255,255,.25),
-          transparent
-        );
-
-      transform: skewX(-20deg);
-
-      transition: .5s;
-    }
-
-    .button:hover::after {
-      left: 130%;
+        transform 0.2s,
+        box-shadow 0.2s;
     }
 
     .button:hover {
-      transform: translateY(-4px);
+      transform: translateY(-3px);
     }
 
     .primary {
@@ -349,56 +349,53 @@
       );
 
       box-shadow:
-        0 10px 35px rgba(109,40,217,.25);
+        0 10px 30px rgba(109,40,217,0.22);
     }
 
     .secondary {
-      background: rgba(255,255,255,.05);
+      background: rgba(255,255,255,0.05);
 
-      border: 1px solid rgba(255,255,255,.08);
+      border:
+        1px solid rgba(255,255,255,0.08);
     }
 
     /* STATS */
 
     .stats {
-      width: min(1000px, 90%);
+      width: min(1000px, calc(100% - 32px));
 
-      margin: -20px auto 100px;
+      margin: 0 auto 110px;
 
       display: grid;
+      grid-template-columns: repeat(3, 1fr);
 
-      grid-template-columns:
-        repeat(3, 1fr);
-
-      gap: 18px;
+      gap: 16px;
     }
 
     .stat {
-      padding: 30px 20px;
+      padding: 28px 20px;
 
       text-align: center;
 
       border-radius: 18px;
 
-      background:
-        rgba(255,255,255,.035);
+      background: rgba(255,255,255,0.035);
 
       border:
-        1px solid rgba(255,255,255,.07);
+        1px solid rgba(255,255,255,0.07);
 
-      transition: .25s;
+      transition: 0.25s;
     }
 
     .stat:hover {
       transform: translateY(-5px);
 
       border-color:
-        rgba(139,92,246,.4);
+        rgba(139,92,246,0.4);
     }
 
     .stat h2 {
-      font-size: 32px;
-
+      font-size: 31px;
       margin-bottom: 7px;
     }
 
@@ -409,7 +406,7 @@
     /* SECTIONS */
 
     section {
-      width: min(1100px, 90%);
+      width: min(1100px, calc(100% - 32px));
 
       margin: 0 auto 110px;
     }
@@ -417,16 +414,15 @@
     .section-title {
       text-align: center;
 
-      margin-bottom: 45px;
+      margin-bottom: 40px;
     }
 
     .section-title h2 {
-      font-size: 36px;
+      font-size: 35px;
     }
 
     .section-title p {
       color: #777;
-
       margin-top: 10px;
     }
 
@@ -435,51 +431,46 @@
     .features {
       display: grid;
 
-      grid-template-columns:
-        repeat(3, 1fr);
+      grid-template-columns: repeat(3, 1fr);
 
-      gap: 18px;
+      gap: 17px;
     }
 
     .card {
-      padding: 27px;
+      padding: 26px;
 
       border-radius: 18px;
 
       background:
         linear-gradient(
           145deg,
-          rgba(255,255,255,.055),
-          rgba(255,255,255,.025)
+          rgba(255,255,255,0.055),
+          rgba(255,255,255,0.025)
         );
 
       border:
-        1px solid rgba(255,255,255,.07);
+        1px solid rgba(255,255,255,0.07);
 
-      transition:
-        transform .25s,
-        border-color .25s,
-        box-shadow .25s;
+      transition: 0.25s;
     }
 
     .card:hover {
-      transform: translateY(-7px);
+      transform: translateY(-6px);
 
       border-color:
-        rgba(139,92,246,.45);
+        rgba(139,92,246,0.4);
 
       box-shadow:
-        0 20px 45px rgba(0,0,0,.3);
+        0 20px 45px rgba(0,0,0,0.25);
     }
 
     .card-icon {
-      font-size: 30px;
-
-      margin-bottom: 18px;
+      font-size: 29px;
+      margin-bottom: 16px;
     }
 
     .card h3 {
-      margin-bottom: 10px;
+      margin-bottom: 9px;
     }
 
     .card p {
@@ -488,15 +479,14 @@
       line-height: 1.5;
     }
 
-    /* COMMANDS PREVIEW */
+    /* COMMANDS */
 
     .commands-preview {
       display: grid;
 
-      grid-template-columns:
-        repeat(3, 1fr);
+      grid-template-columns: repeat(3, 1fr);
 
-      gap: 18px;
+      gap: 17px;
     }
 
     .command {
@@ -504,20 +494,19 @@
 
       border-radius: 16px;
 
-      background:
-        rgba(255,255,255,.035);
+      background: rgba(255,255,255,0.035);
 
       border:
-        1px solid rgba(255,255,255,.07);
+        1px solid rgba(255,255,255,0.07);
 
-      transition: .25s;
+      transition: 0.25s;
     }
 
     .command:hover {
       transform: translateY(-5px);
 
       border-color:
-        rgba(139,92,246,.4);
+        rgba(139,92,246,0.4);
     }
 
     .command-code {
@@ -525,30 +514,28 @@
 
       padding: 7px 10px;
 
+      margin-bottom: 13px;
+
       border-radius: 8px;
 
-      background:
-        rgba(139,92,246,.12);
+      background: rgba(139,92,246,0.12);
 
       color: #b794ff;
 
       font-family: monospace;
-
-      margin-bottom: 13px;
     }
 
     .command p {
       color: #888;
-
       font-size: 14px;
+      line-height: 1.5;
     }
 
     .commands-button {
       display: flex;
-
       justify-content: center;
 
-      margin-top: 30px;
+      margin-top: 28px;
     }
 
     /* SUPPORT */
@@ -563,24 +550,22 @@
       background:
         radial-gradient(
           circle at center,
-          rgba(139,92,246,.14),
-          rgba(255,255,255,.025)
+          rgba(139,92,246,0.14),
+          rgba(255,255,255,0.025)
         );
 
       border:
-        1px solid rgba(139,92,246,.15);
+        1px solid rgba(139,92,246,0.15);
     }
 
     .support h2 {
-      font-size: 34px;
-
+      font-size: 33px;
       margin-bottom: 12px;
     }
 
     .support p {
       color: #888;
-
-      margin-bottom: 28px;
+      margin-bottom: 27px;
     }
 
     /* FOOTER */
@@ -593,7 +578,7 @@
       color: #666;
 
       border-top:
-        1px solid rgba(255,255,255,.05);
+        1px solid rgba(255,255,255,0.05);
     }
 
     footer span {
@@ -604,28 +589,46 @@
 
     @media (max-width: 800px) {
 
-      nav {
-        padding: 15px 5%;
+      .nav-inner {
+        min-height: 64px;
+
+        width: calc(100% - 20px);
+
+        gap: 8px;
+      }
+
+      .brand {
+        font-size: 18px;
+      }
+
+      .brand-logo {
+        font-size: 24px;
       }
 
       .nav-links {
-        gap: 10px;
+        gap: 3px;
       }
 
-      .nav-links a:first-child {
-        display: none;
+      .nav-links a {
+        padding: 8px 8px;
+        font-size: 12px;
       }
 
-      .nav-button {
-        padding: 9px 13px;
+      .nav-links .add-button {
+        padding: 8px 10px;
       }
 
       .hero {
-        min-height: 80vh;
+        min-height: 75vh;
+        padding-top: 65px;
       }
 
       .hero-logo {
-        font-size: 80px;
+        font-size: 78px;
+      }
+
+      .hero p {
+        font-size: 16px;
       }
 
       .stats,
@@ -643,16 +646,46 @@
       }
     }
 
-    @media (prefers-reduced-motion: reduce) {
+    @media (max-width: 430px) {
 
+      .nav-inner {
+        width: calc(100% - 14px);
+      }
+
+      .brand {
+        gap: 5px;
+        font-size: 16px;
+      }
+
+      .brand-logo {
+        font-size: 22px;
+      }
+
+      .nav-links a {
+        padding: 7px 6px;
+        font-size: 11px;
+      }
+
+      .nav-links .add-button {
+        padding: 7px 8px;
+      }
+
+      .hero-logo {
+        font-size: 70px;
+      }
+
+      .hero h1 {
+        font-size: 50px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
       *,
       *::before,
       *::after {
-        animation-duration: .01ms !important;
+        animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
       }
-
     }
   </style>
 </head>
@@ -675,34 +708,36 @@
 
   <nav>
 
-    <a href="index.html" class="brand">
-      <span>🍦</span>
-      Sundae
-    </a>
+    <div class="nav-inner">
 
-    <div class="nav-links">
-
-      <a href="#features">
-        Fonctionnalités
+      <a href="index.html" class="brand">
+        <span class="brand-logo">🍦</span>
+        Sundae
       </a>
 
-      <!-- NOUVEAU LIEN COMMANDES -->
+      <div class="nav-links">
 
-      <a href="commands.html">
-        Commandes
-      </a>
+        <a href="index.html" class="active">
+          Accueil
+        </a>
 
-      <a href="#support">
-        Support
-      </a>
+        <a href="commands.html">
+          Commandes
+        </a>
 
-      <a
-        href="https://discord.com/oauth2/authorize?client_id=1548793958535004261&permissions=8&integration_type=0&scope=bot"
-        target="_blank"
-        class="nav-button"
-      >
-        Ajouter
-      </a>
+        <a href="#support">
+          Support
+        </a>
+
+        <a
+          href="https://discord.com/oauth2/authorize?client_id=1548793958535004261&permissions=8&integration_type=0&scope=bot"
+          target="_blank"
+          class="add-button"
+        >
+          Ajouter
+        </a>
+
+      </div>
 
     </div>
 
@@ -818,110 +853,73 @@
       <div class="features">
 
         <div class="card">
+          <div class="card-icon">🛡️</div>
 
-          <div class="card-icon">
-            🛡️
-          </div>
-
-          <h3>
-            Modération
-          </h3>
+          <h3>Modération</h3>
 
           <p>
             Des outils pour garder ton serveur
             propre et organisé.
           </p>
-
         </div>
 
 
         <div class="card">
+          <div class="card-icon">⚙️</div>
 
-          <div class="card-icon">
-            ⚙️
-          </div>
-
-          <h3>
-            Utilitaires
-          </h3>
+          <h3>Utilitaires</h3>
 
           <p>
             Des commandes pratiques pour gérer
             facilement ton serveur.
           </p>
-
         </div>
 
 
         <div class="card">
+          <div class="card-icon">🎮</div>
 
-          <div class="card-icon">
-            🎮
-          </div>
-
-          <h3>
-            Fun
-          </h3>
+          <h3>Fun</h3>
 
           <p>
             Des fonctionnalités amusantes pour
             profiter avec ta communauté.
           </p>
-
         </div>
 
 
         <div class="card">
+          <div class="card-icon">⚡</div>
 
-          <div class="card-icon">
-            ⚡
-          </div>
-
-          <h3>
-            Rapide
-          </h3>
+          <h3>Rapide</h3>
 
           <p>
             Des réponses rapides et une
             expérience fluide.
           </p>
-
         </div>
 
 
         <div class="card">
+          <div class="card-icon">✨</div>
 
-          <div class="card-icon">
-            ✨
-          </div>
-
-          <h3>
-            Simple
-          </h3>
+          <h3>Simple</h3>
 
           <p>
-            Une utilisation simple, sans
-            configuration compliquée.
+            Une utilisation simple et agréable.
           </p>
-
         </div>
 
 
         <div class="card">
+          <div class="card-icon">🌎</div>
 
-          <div class="card-icon">
-            🌎
-          </div>
-
-          <h3>
-            Public
-          </h3>
+          <h3>Public</h3>
 
           <p>
             Sundae est disponible pour toutes
             les communautés Discord.
           </p>
-
         </div>
 
       </div>
@@ -929,19 +927,18 @@
     </section>
 
 
-    <!-- COMMANDS PREVIEW -->
+    <!-- COMMANDES -->
 
     <section id="commands">
 
       <div class="section-title">
 
         <h2>
-          Quelques commandes
+          Commandes
         </h2>
 
         <p>
-          Découvre une partie des fonctionnalités
-          disponibles avec Sundae.
+          Découvre quelques commandes de Sundae.
         </p>
 
       </div>
@@ -956,8 +953,7 @@
           </div>
 
           <p>
-            Affiche la liste des commandes
-            disponibles.
+            Affiche les commandes disponibles.
           </p>
 
         </div>
@@ -1018,7 +1014,7 @@
 
         <p>
           Rejoins le serveur support de Sundae
-          pour retrouver la communauté.
+          et retrouve la communauté.
         </p>
 
         <a
@@ -1053,23 +1049,17 @@
     const API_URL =
       "https://script.google.com/macros/s/AKfycbxTDt6z2p9tye_js1_iW6GRw1XNMerl72JQcmZaY3hMxvQzaVNuapJYcydNQHJgHjUG9Q/exec";
 
-
     const serverCount =
       document.getElementById("serverCount");
 
-
     const userCount =
       document.getElementById("userCount");
-
 
     const botStatus =
       document.getElementById("botStatus");
 
 
-    function animateNumber(
-      element,
-      target
-    ) {
+    function animateNumber(element, target) {
 
       const duration = 1000;
 
@@ -1081,46 +1071,25 @@
 
         const progress =
           Math.min(
-            (currentTime - startTime)
-              / duration,
+            (currentTime - startTime) / duration,
             1
           );
 
-
         const eased =
-          1 - Math.pow(
-            1 - progress,
-            3
-          );
-
+          1 - Math.pow(1 - progress, 3);
 
         const value =
-          Math.floor(
-            target * eased
-          );
-
+          Math.floor(target * eased);
 
         element.textContent =
-          value.toLocaleString(
-            "fr-FR"
-          );
-
+          value.toLocaleString("fr-FR");
 
         if (progress < 1) {
-
-          requestAnimationFrame(
-            update
-          );
-
+          requestAnimationFrame(update);
         }
-
       }
 
-
-      requestAnimationFrame(
-        update
-      );
-
+      requestAnimationFrame(update);
     }
 
 
@@ -1131,9 +1100,7 @@
         .then(response => {
 
           if (!response.ok) {
-            throw new Error(
-              "API inaccessible"
-            );
+            throw new Error("API inaccessible");
           }
 
           return response.json();
@@ -1153,7 +1120,6 @@
             serverCount,
             servers
           );
-
 
           animateNumber(
             userCount,
@@ -1179,28 +1145,17 @@
 
         })
 
-        .catch(error => {
+        .catch(() => {
 
-          console.error(
-            "Erreur API Sundae :",
-            error
-          );
+          serverCount.textContent = "—";
 
+          userCount.textContent = "—";
 
-          serverCount.textContent =
-            "—";
+          botStatus.textContent = "●";
 
-          userCount.textContent =
-            "—";
-
-          botStatus.textContent =
-            "●";
-
-          botStatus.style.color =
-            "#ef4444";
+          botStatus.style.color = "#ef4444";
 
         });
-
     }
 
 
