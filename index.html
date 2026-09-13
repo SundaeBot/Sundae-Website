@@ -19,17 +19,111 @@
 
     body {
       font-family: Arial, Helvetica, sans-serif;
-      background: #0b0b12;
+      background: #08080f;
       color: white;
       line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -2;
+
+      background:
+        radial-gradient(
+          circle at 20% 20%,
+          rgba(139, 92, 246, 0.12),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 80% 70%,
+          rgba(99, 102, 241, 0.09),
+          transparent 30%
+        );
     }
 
     a {
-      text-decoration: none;
       color: inherit;
+      text-decoration: none;
     }
 
-    /* NAVBAR */
+    /* =========================
+       PARTICULES
+    ========================= */
+
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+
+      width: 4px;
+      height: 4px;
+
+      border-radius: 50%;
+
+      background: rgba(255, 255, 255, 0.35);
+
+      animation: floatParticle linear infinite;
+    }
+
+    .particle:nth-child(1) {
+      left: 10%;
+      animation-duration: 14s;
+      animation-delay: -3s;
+    }
+
+    .particle:nth-child(2) {
+      left: 25%;
+      animation-duration: 18s;
+      animation-delay: -10s;
+    }
+
+    .particle:nth-child(3) {
+      left: 40%;
+      animation-duration: 12s;
+      animation-delay: -5s;
+    }
+
+    .particle:nth-child(4) {
+      left: 55%;
+      animation-duration: 20s;
+      animation-delay: -12s;
+    }
+
+    .particle:nth-child(5) {
+      left: 70%;
+      animation-duration: 16s;
+      animation-delay: -7s;
+    }
+
+    .particle:nth-child(6) {
+      left: 85%;
+      animation-duration: 13s;
+      animation-delay: -2s;
+    }
+
+    @keyframes floatParticle {
+      from {
+        transform: translateY(110vh);
+      }
+
+      to {
+        transform: translateY(-20vh);
+      }
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
 
     nav {
       position: sticky;
@@ -37,15 +131,29 @@
       z-index: 1000;
 
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
 
-      padding: 18px 7%;
+      padding: 17px 7%;
 
-      background: rgba(11, 11, 18, 0.9);
-      backdrop-filter: blur(12px);
+      background: rgba(8, 8, 15, 0.72);
+      backdrop-filter: blur(18px);
 
-      border-bottom: 1px solid #222230;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+
+      animation: navAppear 0.8s ease both;
+    }
+
+    @keyframes navAppear {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .logo {
@@ -53,33 +161,86 @@
       align-items: center;
       gap: 10px;
 
-      font-size: 22px;
+      font-size: 23px;
       font-weight: 800;
     }
 
     .logo-icon {
       font-size: 28px;
+
+      animation:
+        logoFloat 3s ease-in-out infinite,
+        logoSpin 7s ease-in-out infinite;
+    }
+
+    @keyframes logoFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+    @keyframes logoSpin {
+      0%, 85%, 100% {
+        rotate: 0deg;
+      }
+
+      90% {
+        rotate: -8deg;
+      }
+
+      95% {
+        rotate: 8deg;
+      }
     }
 
     nav ul {
       display: flex;
-      gap: 28px;
+      gap: 30px;
       list-style: none;
     }
 
     nav ul a {
-      color: #aaa;
-      transition: 0.2s;
+      color: #999;
+      position: relative;
+      transition: 0.25s;
+    }
+
+    nav ul a::after {
+      content: "";
+
+      position: absolute;
+
+      left: 50%;
+      bottom: -7px;
+
+      width: 0;
+      height: 2px;
+
+      background: #9b72ff;
+
+      transform: translateX(-50%);
+
+      transition: 0.25s;
     }
 
     nav ul a:hover {
       color: white;
     }
 
-    /* HERO */
+    nav ul a:hover::after {
+      width: 100%;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
 
     .hero {
-      min-height: 720px;
+      min-height: 750px;
 
       display: flex;
       flex-direction: column;
@@ -88,53 +249,149 @@
 
       text-align: center;
 
-      padding: 80px 20px;
+      padding: 100px 20px;
 
-      background:
-        radial-gradient(
-          circle at center,
-          rgba(130, 70, 255, 0.18),
-          transparent 55%
-        );
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+
+      position: absolute;
+
+      width: 500px;
+      height: 500px;
+
+      border-radius: 50%;
+
+      background: rgba(139, 92, 246, 0.14);
+
+      filter: blur(100px);
+
+      animation: heroGlow 5s ease-in-out infinite;
+    }
+
+    @keyframes heroGlow {
+      0%, 100% {
+        transform: scale(0.9);
+        opacity: 0.6;
+      }
+
+      50% {
+        transform: scale(1.15);
+        opacity: 1;
+      }
+    }
+
+    .hero > * {
+      position: relative;
+      z-index: 1;
     }
 
     .hero-logo {
-      width: 120px;
-      height: 120px;
+      width: 135px;
+      height: 135px;
 
       display: flex;
       justify-content: center;
       align-items: center;
 
       background: white;
-      border-radius: 28px;
 
-      font-size: 70px;
+      border-radius: 32px;
 
-      margin-bottom: 30px;
+      font-size: 78px;
 
-      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.4);
+      margin-bottom: 35px;
+
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.15),
+        0 20px 80px rgba(0,0,0,0.5);
+
+      animation:
+        heroLogoAppear 1s cubic-bezier(.2,.8,.2,1) both,
+        heroLogoFloat 4s ease-in-out 1s infinite;
+    }
+
+    @keyframes heroLogoAppear {
+      from {
+        opacity: 0;
+        transform: scale(0.5) rotate(-15deg);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+      }
+    }
+
+    @keyframes heroLogoFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-12px);
+      }
     }
 
     .hero h1 {
-      font-size: clamp(55px, 10vw, 100px);
+      font-size: clamp(55px, 10vw, 105px);
+
       line-height: 1;
 
       margin-bottom: 25px;
 
-      background: linear-gradient(90deg, #ffffff, #9d7aff);
+      background: linear-gradient(
+        90deg,
+        #ffffff,
+        #bca3ff,
+        #ffffff
+      );
+
+      background-size: 200% auto;
+
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+
+      animation:
+        titleAppear 1s 0.2s ease both,
+        gradientMove 5s linear infinite;
+    }
+
+    @keyframes titleAppear {
+      from {
+        opacity: 0;
+        transform: translateY(35px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes gradientMove {
+      to {
+        background-position: 200% center;
+      }
     }
 
     .hero p {
       max-width: 650px;
 
-      color: #aaa;
+      color: #999;
+
       font-size: 18px;
 
-      margin-bottom: 35px;
+      margin-bottom: 38px;
+
+      animation: titleAppear 1s 0.4s ease both;
     }
+
+    /* =========================
+       BUTTONS
+    ========================= */
 
     .buttons {
       display: flex;
@@ -142,53 +399,121 @@
 
       flex-wrap: wrap;
       justify-content: center;
+
+      animation: titleAppear 1s 0.6s ease both;
     }
 
     .button {
-      padding: 14px 24px;
+      position: relative;
+      overflow: hidden;
 
-      border-radius: 12px;
+      padding: 14px 25px;
+
+      border-radius: 13px;
 
       font-weight: 700;
 
-      transition: 0.2s;
+      transition:
+        transform 0.25s,
+        box-shadow 0.25s;
+    }
+
+    .button::before {
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      left: -120%;
+
+      width: 80%;
+      height: 100%;
+
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.25),
+        transparent
+      );
+
+      transform: skewX(-20deg);
+
+      transition: 0.6s;
+    }
+
+    .button:hover::before {
+      left: 140%;
     }
 
     .button:hover {
-      transform: translateY(-3px);
+      transform: translateY(-5px) scale(1.03);
     }
 
     .primary {
       background: #8b5cf6;
-      color: white;
 
-      box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+      box-shadow:
+        0 10px 35px rgba(139,92,246,0.3);
+    }
+
+    .primary:hover {
+      box-shadow:
+        0 15px 45px rgba(139,92,246,0.5);
     }
 
     .secondary {
-      background: #191923;
-      border: 1px solid #2b2b38;
+      background: #171720;
+
+      border: 1px solid #292938;
     }
 
-    /* SECTIONS */
+    .secondary:hover {
+      border-color: #7650c9;
+    }
+
+    /* =========================
+       SECTIONS
+    ========================= */
 
     section {
-      padding: 100px 7%;
+      padding: 110px 7%;
     }
 
     .section-title {
       text-align: center;
-      font-size: 42px;
+
+      font-size: 44px;
+
       margin-bottom: 15px;
     }
 
     .section-subtitle {
       text-align: center;
-      color: #888;
-      margin-bottom: 50px;
+
+      color: #777;
+
+      margin-bottom: 55px;
     }
 
-    /* STATS */
+    /* SCROLL ANIMATION */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+
+      transition:
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================
+       STATS
+    ========================= */
 
     .stats {
       display: grid;
@@ -197,45 +522,74 @@
 
       max-width: 1000px;
 
-      margin: 0 auto 100px;
+      margin: 0 auto;
 
-      background: #11111a;
+      background: rgba(17,17,26,0.8);
 
-      border: 1px solid #242432;
+      border: 1px solid #252532;
 
-      border-radius: 20px;
+      border-radius: 22px;
 
       overflow: hidden;
+
+      box-shadow:
+        0 20px 70px rgba(0,0,0,0.25);
     }
 
     .stat {
       text-align: center;
 
-      padding: 35px 20px;
+      padding: 38px 20px;
 
-      border-right: 1px solid #242432;
+      border-right: 1px solid #252532;
+
+      transition:
+        background 0.3s,
+        transform 0.3s;
     }
 
     .stat:last-child {
       border-right: none;
     }
 
+    .stat:hover {
+      background: rgba(139,92,246,0.07);
+      transform: translateY(-4px);
+    }
+
     .stat-number {
-      font-size: 38px;
+      font-size: 40px;
+
       font-weight: 800;
 
       margin-bottom: 5px;
     }
 
     .stat-label {
-      color: #888;
+      color: #777;
     }
 
     .status-dot {
       color: #4ade80;
+
+      animation: statusPulse 2s ease-in-out infinite;
     }
 
-    /* FEATURES */
+    @keyframes statusPulse {
+      0%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 0 rgba(74,222,128,0);
+      }
+
+      50% {
+        opacity: 0.65;
+        text-shadow: 0 0 18px rgba(74,222,128,0.8);
+      }
+    }
+
+    /* =========================
+       FEATURES
+    ========================= */
 
     .features {
       display: grid;
@@ -250,26 +604,41 @@
     }
 
     .card {
-      background: #11111a;
+      background: rgba(17,17,26,0.75);
 
       border: 1px solid #242432;
 
-      border-radius: 18px;
+      border-radius: 19px;
 
       padding: 30px;
 
-      transition: 0.2s;
+      transition:
+        transform 0.35s cubic-bezier(.2,.8,.2,1),
+        border-color 0.35s,
+        box-shadow 0.35s;
     }
 
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-10px);
 
-      border-color: #6541b8;
+      border-color: #704bc2;
+
+      box-shadow:
+        0 20px 50px rgba(0,0,0,0.25);
     }
 
     .card-icon {
-      font-size: 32px;
-      margin-bottom: 15px;
+      font-size: 34px;
+
+      margin-bottom: 16px;
+
+      display: inline-block;
+
+      transition: transform 0.3s;
+    }
+
+    .card:hover .card-icon {
+      transform: scale(1.2) rotate(-5deg);
     }
 
     .card h3 {
@@ -277,34 +646,52 @@
     }
 
     .card p {
-      color: #888;
+      color: #777;
     }
 
-    /* COMMANDS */
+    /* =========================
+       COMMANDS
+    ========================= */
 
     .commands {
       max-width: 900px;
+
       margin: auto;
     }
 
     .command {
       display: flex;
+
       justify-content: space-between;
       align-items: center;
 
-      background: #11111a;
+      background: rgba(17,17,26,0.8);
 
       border: 1px solid #242432;
 
-      padding: 20px 25px;
+      padding: 21px 25px;
 
       border-radius: 14px;
 
-      margin-bottom: 12px;
+      margin-bottom: 13px;
+
+      transition:
+        transform 0.3s,
+        border-color 0.3s,
+        background 0.3s;
+    }
+
+    .command:hover {
+      transform: translateX(8px);
+
+      border-color: #704bc2;
+
+      background: #151520;
     }
 
     .command code {
       color: #b99cff;
+
       font-size: 16px;
     }
 
@@ -312,7 +699,9 @@
       color: #777;
     }
 
-    /* SUPPORT */
+    /* =========================
+       SUPPORT
+    ========================= */
 
     .support {
       text-align: center;
@@ -320,37 +709,68 @@
       background:
         radial-gradient(
           circle at center,
-          rgba(130, 70, 255, 0.12),
+          rgba(139,92,246,0.12),
           transparent 60%
         );
     }
 
     .support p {
-      color: #888;
+      color: #777;
 
       max-width: 600px;
 
-      margin: 0 auto 30px;
+      margin: 0 auto 32px;
     }
 
-    /* FOOTER */
+    /* =========================
+       FOOTER
+    ========================= */
 
     footer {
       text-align: center;
 
-      padding: 35px 20px;
+      padding: 40px 20px;
 
-      border-top: 1px solid #222230;
+      border-top: 1px solid #22222e;
 
-      color: #666;
+      color: #555;
     }
 
-    /* MOBILE */
+    footer span {
+      display: inline-block;
+
+      animation: footerIce 3s ease-in-out infinite;
+    }
+
+    @keyframes footerIce {
+      0%, 100% {
+        transform: rotate(0);
+      }
+
+      50% {
+        transform: rotate(-10deg) translateY(-3px);
+      }
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
 
     @media (max-width: 800px) {
 
       nav ul {
         display: none;
+      }
+
+      .hero {
+        min-height: 680px;
+      }
+
+      .hero-logo {
+        width: 110px;
+        height: 110px;
+
+        font-size: 65px;
       }
 
       .stats {
@@ -359,7 +779,8 @@
 
       .stat {
         border-right: none;
-        border-bottom: 1px solid #242432;
+
+        border-bottom: 1px solid #252532;
       }
 
       .stat:last-child {
@@ -371,11 +792,30 @@
       }
 
       section {
-        padding: 75px 5%;
+        padding: 80px 5%;
       }
 
-      .hero {
-        min-height: 650px;
+      .section-title {
+        font-size: 36px;
+      }
+
+      .command {
+        gap: 15px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      html {
+        scroll-behavior: auto;
       }
     }
   </style>
@@ -383,19 +823,45 @@
 
 <body>
 
+  <!-- PARTICULES -->
+
+  <div class="particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+
   <!-- NAVBAR -->
 
   <nav>
 
     <a href="#" class="logo">
-      <span class="logo-icon">🍨</span>
+      <span class="logo-icon">🍦</span>
       Sundae
     </a>
 
     <ul>
-      <li><a href="#features">Fonctionnalités</a></li>
-      <li><a href="#commands">Commandes</a></li>
-      <li><a href="#support">Support</a></li>
+      <li>
+        <a href="#features">
+          Fonctionnalités
+        </a>
+      </li>
+
+      <li>
+        <a href="#commands">
+          Commandes
+        </a>
+      </li>
+
+      <li>
+        <a href="#support">
+          Support
+        </a>
+      </li>
     </ul>
 
   </nav>
@@ -406,10 +872,12 @@
   <header class="hero">
 
     <div class="hero-logo">
-      🍨
+      🍦
     </div>
 
-    <h1>Meet Sundae.</h1>
+    <h1>
+      Meet Sundae.
+    </h1>
 
     <p>
       Sundae est un bot Discord public pensé pour rendre
@@ -443,59 +911,63 @@
 
   <section>
 
-    <h2 class="section-title">
-      Sundae en chiffres
-    </h2>
+    <div class="reveal">
 
-    <p class="section-subtitle">
-      Les statistiques actuelles du bot.
-    </p>
+      <h2 class="section-title">
+        Sundae en chiffres
+      </h2>
 
-    <div class="stats">
+      <p class="section-subtitle">
+        Les statistiques actuelles du bot.
+      </p>
 
-      <div class="stat">
+      <div class="stats">
 
-        <div
-          class="stat-number"
-          id="serverCount"
-        >
-          —
+        <div class="stat">
+
+          <div
+            class="stat-number"
+            id="serverCount"
+          >
+            —
+          </div>
+
+          <div class="stat-label">
+            Serveurs
+          </div>
+
         </div>
 
-        <div class="stat-label">
-          Serveurs
+
+        <div class="stat">
+
+          <div
+            class="stat-number"
+            id="userCount"
+          >
+            —
+          </div>
+
+          <div class="stat-label">
+            Utilisateurs
+          </div>
+
         </div>
 
-      </div>
 
+        <div class="stat">
 
-      <div class="stat">
+          <div
+            class="stat-number status-dot"
+            id="botStatus"
+          >
+            ●
+          </div>
 
-        <div
-          class="stat-number"
-          id="userCount"
-        >
-          —
-        </div>
+          <div class="stat-label">
+            Sundae est en ligne
+          </div>
 
-        <div class="stat-label">
-          Utilisateurs
-        </div>
-
-      </div>
-
-
-      <div class="stat">
-
-        <div
-          class="stat-number status-dot"
-          id="botStatus"
-        >
-          ●
-        </div>
-
-        <div class="stat-label">
-          Sundae est en ligne
         </div>
 
       </div>
@@ -509,118 +981,97 @@
 
   <section id="features">
 
-    <h2 class="section-title">
-      Fonctionnalités
-    </h2>
+    <div class="reveal">
 
-    <p class="section-subtitle">
-      Tout ce dont votre serveur a besoin.
-    </p>
+      <h2 class="section-title">
+        Fonctionnalités
+      </h2>
 
+      <p class="section-subtitle">
+        Tout ce dont votre serveur a besoin.
+      </p>
 
-    <div class="features">
+      <div class="features">
 
-      <div class="card">
+        <div class="card">
+          <div class="card-icon">🛡️</div>
 
-        <div class="card-icon">
-          🛡️
+          <h3>
+            Modération
+          </h3>
+
+          <p>
+            Des outils pour garder votre serveur organisé
+            et agréable.
+          </p>
         </div>
 
-        <h3>
-          Modération
-        </h3>
 
-        <p>
-          Des outils pour garder votre serveur organisé
-          et agréable.
-        </p>
+        <div class="card">
+          <div class="card-icon">⚙️</div>
 
-      </div>
+          <h3>
+            Utilitaires
+          </h3>
 
-
-      <div class="card">
-
-        <div class="card-icon">
-          ⚙️
+          <p>
+            Des commandes pratiques pour faciliter
+            la gestion de votre serveur.
+          </p>
         </div>
 
-        <h3>
-          Utilitaires
-        </h3>
 
-        <p>
-          Des commandes pratiques pour faciliter
-          la gestion de votre serveur.
-        </p>
+        <div class="card">
+          <div class="card-icon">🎮</div>
 
-      </div>
+          <h3>
+            Fun
+          </h3>
 
-
-      <div class="card">
-
-        <div class="card-icon">
-          🎮
+          <p>
+            Des fonctionnalités amusantes pour votre communauté.
+          </p>
         </div>
 
-        <h3>
-          Fun
-        </h3>
 
-        <p>
-          Des fonctionnalités amusantes pour votre communauté.
-        </p>
+        <div class="card">
+          <div class="card-icon">⚡</div>
 
-      </div>
+          <h3>
+            Rapide
+          </h3>
 
-
-      <div class="card">
-
-        <div class="card-icon">
-          ⚡
+          <p>
+            Sundae est conçu pour répondre rapidement
+            à vos commandes.
+          </p>
         </div>
 
-        <h3>
-          Rapide
-        </h3>
 
-        <p>
-          Sundae est conçu pour répondre rapidement
-          à vos commandes.
-        </p>
+        <div class="card">
+          <div class="card-icon">✨</div>
 
-      </div>
+          <h3>
+            Simple
+          </h3>
 
-
-      <div class="card">
-
-        <div class="card-icon">
-          ✨
+          <p>
+            Une utilisation simple et accessible à tous.
+          </p>
         </div>
 
-        <h3>
-          Simple
-        </h3>
 
-        <p>
-          Une utilisation simple et accessible à tous.
-        </p>
+        <div class="card">
+          <div class="card-icon">🌎</div>
 
-      </div>
+          <h3>
+            Public
+          </h3>
 
-
-      <div class="card">
-
-        <div class="card-icon">
-          🌎
+          <p>
+            Sundae est disponible pour toutes les communautés Discord.
+          </p>
         </div>
-
-        <h3>
-          Public
-        </h3>
-
-        <p>
-          Sundae est disponible pour toutes les communautés Discord.
-        </p>
 
       </div>
 
@@ -633,46 +1084,32 @@
 
   <section id="commands">
 
-    <h2 class="section-title">
-      Commandes
-    </h2>
+    <div class="reveal">
 
-    <p class="section-subtitle">
-      Quelques commandes disponibles.
-    </p>
+      <h2 class="section-title">
+        Commandes
+      </h2>
 
+      <p class="section-subtitle">
+        Quelques commandes disponibles.
+      </p>
 
-    <div class="commands">
+      <div class="commands">
 
-      <div class="command">
+        <div class="command">
+          <code>/help</code>
+          <span>Afficher l'aide</span>
+        </div>
 
-        <code>/help</code>
+        <div class="command">
+          <code>/ping</code>
+          <span>Vérifier la latence</span>
+        </div>
 
-        <span>
-          Afficher l'aide
-        </span>
-
-      </div>
-
-
-      <div class="command">
-
-        <code>/ping</code>
-
-        <span>
-          Vérifier la latence
-        </span>
-
-      </div>
-
-
-      <div class="command">
-
-        <code>Bientôt...</code>
-
-        <span>
-          Plus de commandes arrivent
-        </span>
+        <div class="command">
+          <code>Bientôt...</code>
+          <span>Plus de commandes arrivent</span>
+        </div>
 
       </div>
 
@@ -688,22 +1125,26 @@
     class="support"
   >
 
-    <h2 class="section-title">
-      Besoin d'aide ?
-    </h2>
+    <div class="reveal">
 
-    <p>
-      Rejoins le serveur support officiel de Sundae
-      pour obtenir de l'aide et suivre le développement du bot.
-    </p>
+      <h2 class="section-title">
+        Besoin d'aide ?
+      </h2>
 
-    <a
-      class="button primary"
-      href="https://discord.com/invite/csJF5vxT2z"
-      target="_blank"
-    >
-      Rejoindre le support
-    </a>
+      <p>
+        Rejoins le serveur support officiel de Sundae
+        pour obtenir de l'aide et suivre le développement du bot.
+      </p>
+
+      <a
+        class="button primary"
+        href="https://discord.com/invite/csJF5vxT2z"
+        target="_blank"
+      >
+        Rejoindre le support
+      </a>
+
+    </div>
 
   </section>
 
@@ -712,14 +1153,20 @@
 
   <footer>
 
+    <span>🍦</span>
+
     © 2026 Sundae. Tous droits réservés.
 
   </footer>
 
 
-  <!-- API -->
+  <!-- API + ANIMATIONS -->
 
   <script>
+
+    /* =========================
+       API
+    ========================= */
 
     const API_URL =
       "https://script.google.com/macros/s/AKfycbxTDt6z2p9tye_js1_iW6GRw1XNMerl72JQcmZaY3hMxvQzaVNuapJYcydNQHJgHjUG9Q/exec";
@@ -733,6 +1180,39 @@
 
     const botStatus =
       document.getElementById("botStatus");
+
+
+    function animateNumber(element, target) {
+
+      const duration = 1000;
+
+      const startTime = performance.now();
+
+      function update(currentTime) {
+
+        const progress =
+          Math.min(
+            (currentTime - startTime) / duration,
+            1
+          );
+
+        const eased =
+          1 - Math.pow(1 - progress, 3);
+
+        const value =
+          Math.floor(target * eased);
+
+        element.textContent =
+          value.toLocaleString("fr-FR");
+
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        }
+
+      }
+
+      requestAnimationFrame(update);
+    }
 
 
     function updateStats() {
@@ -751,23 +1231,38 @@
 
         .then(data => {
 
-          serverCount.textContent =
-            Number(data.servers).toLocaleString("fr-FR");
+          const servers =
+            Number(data.servers) || 0;
+
+          const users =
+            Number(data.users) || 0;
 
 
-          userCount.textContent =
-            Number(data.users).toLocaleString("fr-FR");
+          animateNumber(
+            serverCount,
+            servers
+          );
+
+
+          animateNumber(
+            userCount,
+            users
+          );
 
 
           if (data.online) {
 
             botStatus.textContent = "●";
-            botStatus.style.color = "#4ade80";
+
+            botStatus.style.color =
+              "#4ade80";
 
           } else {
 
             botStatus.textContent = "●";
-            botStatus.style.color = "#ef4444";
+
+            botStatus.style.color =
+              "#ef4444";
 
           }
 
@@ -781,24 +1276,104 @@
           );
 
           serverCount.textContent = "—";
+
           userCount.textContent = "—";
 
           botStatus.textContent = "●";
-          botStatus.style.color = "#ef4444";
+
+          botStatus.style.color =
+            "#ef4444";
 
         });
 
     }
 
 
-    // Première récupération
     updateStats();
 
 
-    // Actualisation toutes les 5 minutes
+    /*
+      Actualisation toutes les 5 minutes
+    */
+
     setInterval(
       updateStats,
       5 * 60 * 1000
+    );
+
+
+    /* =========================
+       SCROLL REVEAL
+    ========================= */
+
+    const revealElements =
+      document.querySelectorAll(".reveal");
+
+
+    const observer =
+      new IntersectionObserver(
+
+        entries => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add(
+                "visible"
+              );
+
+            }
+
+          });
+
+        },
+
+        {
+          threshold: 0.12
+        }
+
+      );
+
+
+    revealElements.forEach(element => {
+
+      observer.observe(element);
+
+    });
+
+
+    /* =========================
+       PARALLAX SOURIS
+    ========================= */
+
+    const heroLogo =
+      document.querySelector(".hero-logo");
+
+
+    document.addEventListener(
+      "mousemove",
+      event => {
+
+        if (window.innerWidth < 800) {
+          return;
+        }
+
+        const x =
+          (event.clientX /
+            window.innerWidth -
+            0.5) * 10;
+
+        const y =
+          (event.clientY /
+            window.innerHeight -
+            0.5) * 10;
+
+
+        heroLogo.style.transform =
+          `translate(${x}px, ${y}px)`;
+
+      }
     );
 
   </script>
