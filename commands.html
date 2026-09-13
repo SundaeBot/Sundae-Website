@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Sundae — Commandes</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #08080f;
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(139, 92, 246, 0.15), transparent 30%),
+        radial-gradient(circle at 80% 30%, rgba(124, 58, 237, 0.12), transparent 30%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* NAVBAR */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 18px 7%;
+
+      background: rgba(8, 8, 15, 0.82);
+      backdrop-filter: blur(15px);
+
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      font-size: 21px;
+      font-weight: 800;
+      text-decoration: none;
+      color: white;
+    }
+
+    .brand span {
+      font-size: 28px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #aaa;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.25s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: white;
+    }
+
+    .nav-button {
+      padding: 10px 17px;
+      border-radius: 10px;
+
+      background: linear-gradient(
+        135deg,
+        #8b5cf6,
+        #6d28d9
+      );
+
+      color: white !important;
+      box-shadow: 0 0 25px rgba(139,92,246,.25);
+    }
+
+    /* HEADER */
+
+    .header {
+      text-align: center;
+      padding: 100px 20px 60px;
+    }
+
+    .header-logo {
+      font-size: 70px;
+      display: inline-block;
+
+      animation: float 3s ease-in-out infinite;
+      filter: drop-shadow(
+        0 0 30px rgba(139,92,246,.35)
+      );
+    }
+
+    .header h1 {
+      margin-top: 20px;
+      font-size: clamp(42px, 7vw, 70px);
+
+      background: linear-gradient(
+        90deg,
+        #ffffff,
+        #b794ff,
+        #8b5cf6,
+        #ffffff
+      );
+
+      background-size: 250%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      animation: gradient 5s linear infinite;
+    }
+
+    .header p {
+      max-width: 600px;
+      margin: 20px auto 0;
+
+      color: #9b9ba8;
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    /* SEARCH */
+
+    .search-container {
+      max-width: 650px;
+      margin: 0 auto 60px;
+      padding: 0 20px;
+    }
+
+    .search {
+      width: 100%;
+
+      padding: 17px 20px;
+
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.08);
+
+      outline: none;
+
+      background: rgba(255,255,255,.04);
+      color: white;
+
+      font-size: 16px;
+
+      transition: .25s;
+    }
+
+    .search::placeholder {
+      color: #777;
+    }
+
+    .search:focus {
+      border-color: rgba(139,92,246,.7);
+
+      box-shadow:
+        0 0 0 4px rgba(139,92,246,.08),
+        0 0 30px rgba(139,92,246,.12);
+    }
+
+    /* CATEGORIES */
+
+    .category {
+      width: min(1100px, 90%);
+      margin: 0 auto 70px;
+    }
+
+    .category-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      margin-bottom: 25px;
+    }
+
+    .category-title .icon {
+      width: 42px;
+      height: 42px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 12px;
+
+      background: rgba(139,92,246,.12);
+
+      font-size: 21px;
+    }
+
+    .category-title h2 {
+      font-size: 26px;
+    }
+
+    .category-title p {
+      color: #777;
+      font-size: 14px;
+      margin-top: 3px;
+    }
+
+    .commands-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    /* COMMAND CARD */
+
+    .command-card {
+      position: relative;
+
+      padding: 23px;
+
+      border-radius: 18px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.055),
+          rgba(255,255,255,.025)
+        );
+
+      border: 1px solid rgba(255,255,255,.07);
+
+      transition:
+        transform .25s,
+        border-color .25s,
+        box-shadow .25s;
+    }
+
+    .command-card:hover {
+      transform: translateY(-6px);
+
+      border-color: rgba(139,92,246,.45);
+
+      box-shadow:
+        0 15px 45px rgba(0,0,0,.3),
+        0 0 30px rgba(139,92,246,.08);
+    }
+
+    .command-card h3 {
+      font-size: 17px;
+      margin-bottom: 10px;
+    }
+
+    .command {
+      display: inline-block;
+
+      padding: 7px 10px;
+
+      margin-bottom: 15px;
+
+      border-radius: 8px;
+
+      background: rgba(139,92,246,.12);
+
+      color: #b794ff;
+
+      font-family: monospace;
+      font-size: 14px;
+    }
+
+    .command-card p {
+      color: #92929d;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .soon {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+
+      padding: 5px 8px;
+
+      border-radius: 7px;
+
+      background: rgba(255,255,255,.05);
+      color: #777;
+
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    /* EMPTY */
+
+    .no-result {
+      display: none;
+
+      text-align: center;
+
+      color: #777;
+
+      padding: 60px 20px;
+    }
+
+    /* CTA */
+
+    .cta {
+      width: min(1000px, 90%);
+      margin: 100px auto;
+
+      padding: 55px 30px;
+
+      text-align: center;
+
+      border-radius: 25px;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(139,92,246,.15),
+          rgba(255,255,255,.025)
+        );
+
+      border: 1px solid rgba(139,92,246,.15);
+    }
+
+    .cta h2 {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .cta p {
+      color: #92929d;
+      margin-bottom: 28px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-block;
+
+      padding: 14px 22px;
+
+      border-radius: 12px;
+
+      text-decoration: none;
+      color: white;
+
+      font-weight: 700;
+
+      transition: .25s;
+    }
+
+    .button.primary {
+      background: linear-gradient(
+        135deg,
+        #8b5cf6,
+        #6d28d9
+      );
+
+      box-shadow:
+        0 10px 30px rgba(109,40,217,.25);
+    }
+
+    .button.secondary {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 35px 20px;
+
+      text-align: center;
+
+      color: #666;
+
+      border-top: 1px solid rgba(255,255,255,.05);
+    }
+
+    footer span {
+      color: white;
+    }
+
+    /* ANIMATIONS */
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes gradient {
+      0% {
+        background-position: 0%;
+      }
+
+      100% {
+        background-position: 250%;
+      }
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+
+      nav {
+        padding: 15px 5%;
+      }
+
+      .nav-links {
+        gap: 12px;
+      }
+
+      .nav-links a:not(.nav-button) {
+        display: none;
+      }
+
+      .header {
+        padding: 75px 20px 45px;
+      }
+
+      .header-logo {
+        font-size: 58px;
+      }
+
+      .commands-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .category {
+        width: 90%;
+      }
+
+      .cta {
+        margin: 70px auto;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+
+    <a class="brand" href="index.html">
+      <span>🍦</span>
+      Sundae
+    </a>
+
+    <div class="nav-links">
+
+      <a href="index.html">
+        Accueil
+      </a>
+
+      <a href="commands.html" class="active">
+        Commandes
+      </a>
+
+      <a
+        href="https://discord.com/invite/csJF5vxT2z"
+        target="_blank"
+        class="nav-button"
+      >
+        Support
+      </a>
+
+    </div>
+
+  </nav>
+
+
+  <!-- HEADER -->
+
+  <header class="header">
+
+    <div class="header-logo">
+      🍦
+    </div>
+
+    <h1>
+      Commandes
+    </h1>
+
+    <p>
+      Découvre toutes les commandes disponibles
+      avec Sundae et profite d'une expérience
+      simple, rapide et complète.
+    </p>
+
+  </header>
+
+
+  <!-- SEARCH -->
+
+  <div class="search-container">
+
+    <input
+      id="search"
+      class="search"
+      type="text"
+      placeholder="🔎 Rechercher une commande..."
+      autocomplete="off"
+    >
+
+  </div>
+
+
+  <!-- MODERATION -->
+
+  <section class="category">
+
+    <div class="category-title">
+
+      <div class="icon">
+        🛡️
+      </div>
+
+      <div>
+        <h2>Modération</h2>
+        <p>Garde ton serveur propre et organisé.</p>
+      </div>
+
+    </div>
+
+
+    <div class="commands-grid">
+
+      <article class="command-card" data-search="ban">
+        <span class="soon">BIENTÔT</span>
+
+        <h3>Ban</h3>
+
+        <div class="command">
+          +ban
+        </div>
+
+        <p>
+          Bannis un membre de ton serveur.
+        </p>
+      </article>
+
+
+      <article class="command-card" data-search="kick">
+        <span class="soon">BIENTÔT</span>
+
+        <h3>Kick</h3>
+
+        <div class="command">
+          +kick
+        </div>
+
+        <p>
+          Expulse un membre du serveur.
+        </p>
+      </article>
+
+
+      <article class="command-card" data-search="clear purge">
+        <span class="soon">BIENTÔT</span>
+
+        <h3>Clear</h3>
+
+        <div class="command">
+          +clear
+        </div>
+
+        <p>
+          Supprime rapidement plusieurs messages.
+        </p>
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- UTILITAIRES -->
+
+  <section class="category">
+
+    <div class="category-title">
+
+      <div class="icon">
+        ⚙️
+      </div>
+
+      <div>
+        <h2>Utilitaires</h2>
+        <p>Des outils pratiques pour ton serveur.</p>
+      </div>
+
+    </div>
+
+
+    <div class="commands-grid">
+
+      <article class="command-card" data-search="help aide">
+        <h3>Aide</h3>
+
+        <div class="command">
+          +help
+        </div>
+
+        <p>
+          Affiche les commandes disponibles de Sundae.
+        </p>
+      </article>
+
+
+      <article class="command-card" data-search="ping">
+        <h3>Ping</h3>
+
+        <div class="command">
+          +ping
+        </div>
+
+        <p>
+          Vérifie la latence du bot.
+        </p>
+      </article>
+
+
+      <article class="command-card" data-search="stats statistiques">
+        <h3>Statistiques</h3>
+
+        <div class="command">
+          +stats
+        </div>
+
+        <p>
+          Affiche les statistiques actuelles de Sundae.
+        </p>
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- FUN -->
+
+  <section class="category">
+
+    <div class="category-title">
+
+      <div class="icon">
+        🎮
+      </div>
+
+      <div>
+        <h2>Fun</h2>
+        <p>Des commandes pour mettre l'ambiance.</p>
+      </div>
+
+    </div>
+
+
+    <div class="commands-grid">
+
+      <article class="command-card" data-search="fun">
+        <span class="soon">BIENTÔT</span>
+
+        <h3>Commandes Fun</h3>
+
+        <div class="command">
+          À venir
+        </div>
+
+        <p>
+          De nouvelles commandes fun arriveront bientôt.
+        </p>
+      </article>
+
+
+      <article class="command-card" data-search="games jeux">
+        <span class="soon">BIENTÔT</span>
+
+        <h3>Mini-jeux</h3>
+
+        <div class="command">
+          À venir
+        </div>
+
+        <p>
+          Des mini-jeux pour jouer avec les membres.
+        </p>
+      </article>
+
+
+      <article class="command-card" data-search="fun">
+        <span class="soon">BIENTÔT</span>
+
+        <h3>Surprises</h3>
+
+        <div class="command">
+          À venir
+        </div>
+
+        <p>
+          D'autres fonctionnalités arriveront prochainement.
+        </p>
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <div id="noResult" class="no-result">
+
+    😕 Aucune commande trouvée.
+
+  </div>
+
+
+  <!-- CTA -->
+
+  <section class="cta">
+
+    <h2>
+      Prêt à essayer Sundae ?
+    </h2>
+
+    <p>
+      Ajoute Sundae à ton serveur et découvre
+      toutes ses fonctionnalités.
+    </p>
+
+    <div class="buttons">
+
+      <a
+        class="button primary"
+        href="https://discord.com/oauth2/authorize?client_id=1548793958535004261&permissions=8&integration_type=0&scope=bot"
+        target="_blank"
+      >
+        🍦 Ajouter Sundae
+      </a>
+
+      <a
+        class="button secondary"
+        href="https://discord.com/invite/csJF5vxT2z"
+        target="_blank"
+      >
+        💬 Support
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <span>🍦 Sundae</span>
+    — Discord Bot
+
+  </footer>
+
+
+  <!-- SEARCH SCRIPT -->
+
+  <script>
+
+    const search =
+      document.getElementById("search");
+
+    const cards =
+      document.querySelectorAll(".command-card");
+
+    const categories =
+      document.querySelectorAll(".category");
+
+    const noResult =
+      document.getElementById("noResult");
+
+
+    search.addEventListener("input", () => {
+
+      const query =
+        search.value
+          .toLowerCase()
+          .trim();
+
+      let found = 0;
+
+
+      cards.forEach(card => {
+
+        const text =
+          (
+            card.innerText +
+            " " +
+            card.dataset.search
+          ).toLowerCase();
+
+        if (text.includes(query)) {
+
+          card.style.display = "";
+
+          found++;
+
+        } else {
+
+          card.style.display = "none";
+
+        }
+
+      });
+
+
+      categories.forEach(category => {
+
+        const visibleCards =
+          category.querySelectorAll(
+            ".command-card:not([style*='display: none'])"
+          );
+
+        category.style.display =
+          visibleCards.length === 0
+            ? "none"
+            : "";
+
+      });
+
+
+      noResult.style.display =
+        found === 0
+          ? "block"
+          : "none";
+
+    });
+
+  </script>
+
+</body>
+</html>
