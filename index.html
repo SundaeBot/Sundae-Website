@@ -1,1 +1,282 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Sundae — Discord Bot</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b0b12;
+      color: white;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 7%;
+      background: #10101a;
+      border-bottom: 1px solid #252535;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: #a970ff;
+    }
+
+    nav a {
+      color: #ddd;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .hero h1 {
+      font-size: 65px;
+      margin-bottom: 15px;
+    }
+
+    .hero h1 span {
+      color: #a970ff;
+    }
+
+    .hero p {
+      max-width: 600px;
+      color: #aaa;
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .button {
+      padding: 14px 24px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      background: #8b5cf6;
+      color: white;
+    }
+
+    .button.secondary {
+      background: #20202c;
+      border: 1px solid #343447;
+    }
+
+    section {
+      padding: 80px 7%;
+      text-align: center;
+    }
+
+    section h2 {
+      font-size: 35px;
+      margin-bottom: 15px;
+    }
+
+    section > p {
+      color: #999;
+      margin-bottom: 40px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .card {
+      background: #13131d;
+      border: 1px solid #272735;
+      border-radius: 15px;
+      padding: 30px;
+      text-align: left;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #999;
+      line-height: 1.5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #10101a;
+      color: #777;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 45px;
+      }
+
+      nav a {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="logo">🍨 <span>Sundae</span></div>
+
+    <div>
+      <a href="#features">Fonctionnalités</a>
+      <a href="#commands">Commandes</a>
+      <a href="#support">Support</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Meet <span>Sundae</span>.</h1>
+
+    <p>
+      Un bot Discord public, simple, rapide et conçu pour rendre
+      ton serveur encore meilleur.
+    </p>
+
+    <div class="buttons">
+      <a class="button" href="#">
+        Ajouter Sundae
+      </a>
+
+      <a
+        class="button secondary"
+        href="https://discord.com/invite/csJF5vxT2z"
+        target="_blank"
+      >
+        Serveur Support
+      </a>
+    </div>
+  </section>
+
+  <section id="features">
+    <h2>Fonctionnalités</h2>
+
+    <p>
+      Tout ce qu'il faut pour ton serveur Discord.
+    </p>
+
+    <div class="cards">
+
+      <div class="card">
+        <h3>🛡️ Modération</h3>
+        <p>
+          Des commandes utiles pour garder ton serveur organisé.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>⚙️ Utilitaires</h3>
+        <p>
+          Des commandes pratiques pour gérer facilement ton serveur.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>🎉 Fun</h3>
+        <p>
+          Des commandes amusantes pour rendre ton serveur plus vivant.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>🚀 Rapide</h3>
+        <p>
+          Sundae est pensé pour être simple et rapide à utiliser.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="commands">
+    <h2>Commandes</h2>
+
+    <p>
+      Découvre les commandes disponibles avec Sundae.
+    </p>
+
+    <div class="cards">
+
+      <div class="card">
+        <h3>/help</h3>
+        <p>
+          Affiche la liste des commandes disponibles.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>/ping</h3>
+        <p>
+          Vérifie la latence de Sundae.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>/server</h3>
+        <p>
+          Affiche les informations du serveur.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="support">
+    <h2>Besoin d'aide ?</h2>
+
+    <p>
+      Rejoins le serveur officiel de support de Sundae.
+    </p>
+
+    <a
+      class="button"
+      href="https://discord.com/invite/csJF5vxT2z"
+      target="_blank"
+    >
+      Rejoindre Discord
+    </a>
+  </section>
+
+  <footer>
+    © 2026 Sundae — Discord Bot
+  </footer>
+
+</body>
+</html>
