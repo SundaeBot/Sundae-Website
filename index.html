@@ -21,38 +21,33 @@
       font-family: Arial, Helvetica, sans-serif;
       background: #08080f;
       color: white;
-      line-height: 1.6;
       overflow-x: hidden;
     }
+
+    /* BACKGROUND */
 
     body::before {
       content: "";
       position: fixed;
       inset: 0;
-      pointer-events: none;
-      z-index: -2;
 
       background:
         radial-gradient(
-          circle at 20% 20%,
-          rgba(139, 92, 246, 0.12),
+          circle at 20% 10%,
+          rgba(139, 92, 246, 0.16),
           transparent 30%
         ),
         radial-gradient(
-          circle at 80% 70%,
-          rgba(99, 102, 241, 0.09),
+          circle at 80% 30%,
+          rgba(124, 58, 237, 0.12),
           transparent 30%
         );
+
+      pointer-events: none;
+      z-index: -2;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* =========================
-       PARTICULES
-    ========================= */
+    /* PARTICLES */
 
     .particles {
       position: fixed;
@@ -65,65 +60,69 @@
     .particle {
       position: absolute;
 
-      width: 4px;
-      height: 4px;
+      width: 5px;
+      height: 5px;
 
       border-radius: 50%;
 
-      background: rgba(255, 255, 255, 0.35);
+      background: rgba(167, 139, 250, 0.5);
 
-      animation: floatParticle linear infinite;
+      animation: particleFloat linear infinite;
     }
 
     .particle:nth-child(1) {
       left: 10%;
-      animation-duration: 14s;
-      animation-delay: -3s;
+      top: 80%;
+      animation-duration: 9s;
     }
 
     .particle:nth-child(2) {
       left: 25%;
-      animation-duration: 18s;
-      animation-delay: -10s;
+      top: 60%;
+      animation-duration: 12s;
     }
 
     .particle:nth-child(3) {
-      left: 40%;
-      animation-duration: 12s;
-      animation-delay: -5s;
+      left: 45%;
+      top: 90%;
+      animation-duration: 10s;
     }
 
     .particle:nth-child(4) {
-      left: 55%;
-      animation-duration: 20s;
-      animation-delay: -12s;
+      left: 65%;
+      top: 70%;
+      animation-duration: 13s;
     }
 
     .particle:nth-child(5) {
-      left: 70%;
-      animation-duration: 16s;
-      animation-delay: -7s;
+      left: 80%;
+      top: 85%;
+      animation-duration: 11s;
     }
 
     .particle:nth-child(6) {
-      left: 85%;
-      animation-duration: 13s;
-      animation-delay: -2s;
+      left: 90%;
+      top: 50%;
+      animation-duration: 14s;
     }
 
-    @keyframes floatParticle {
+    @keyframes particleFloat {
       from {
-        transform: translateY(110vh);
+        transform: translateY(0);
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 1;
       }
 
       to {
-        transform: translateY(-20vh);
+        transform: translateY(-110vh);
+        opacity: 0;
       }
     }
 
-    /* =========================
-       NAVBAR
-    ========================= */
+    /* NAVBAR */
 
     nav {
       position: sticky;
@@ -131,116 +130,73 @@
       z-index: 1000;
 
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
 
-      padding: 17px 7%;
+      padding: 18px 7%;
 
-      background: rgba(8, 8, 15, 0.72);
-      backdrop-filter: blur(18px);
+      background: rgba(8, 8, 15, 0.82);
+      backdrop-filter: blur(15px);
 
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-
-      animation: navAppear 0.8s ease both;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
-    @keyframes navAppear {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .logo {
+    .brand {
       display: flex;
       align-items: center;
       gap: 10px;
 
-      font-size: 23px;
+      color: white;
+      text-decoration: none;
+
+      font-size: 21px;
       font-weight: 800;
     }
 
-    .logo-icon {
+    .brand span {
       font-size: 28px;
-
-      animation:
-        logoFloat 3s ease-in-out infinite,
-        logoSpin 7s ease-in-out infinite;
     }
 
-    @keyframes logoFloat {
-      0%, 100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-5px);
-      }
-    }
-
-    @keyframes logoSpin {
-      0%, 85%, 100% {
-        rotate: 0deg;
-      }
-
-      90% {
-        rotate: -8deg;
-      }
-
-      95% {
-        rotate: 8deg;
-      }
-    }
-
-    nav ul {
+    .nav-links {
       display: flex;
-      gap: 30px;
-      list-style: none;
+      align-items: center;
+      gap: 25px;
     }
 
-    nav ul a {
-      color: #999;
-      position: relative;
-      transition: 0.25s;
-    }
+    .nav-links a {
+      color: #aaa;
+      text-decoration: none;
 
-    nav ul a::after {
-      content: "";
-
-      position: absolute;
-
-      left: 50%;
-      bottom: -7px;
-
-      width: 0;
-      height: 2px;
-
-      background: #9b72ff;
-
-      transform: translateX(-50%);
+      font-weight: 600;
 
       transition: 0.25s;
     }
 
-    nav ul a:hover {
+    .nav-links a:hover {
       color: white;
     }
 
-    nav ul a:hover::after {
-      width: 100%;
+    .nav-button {
+      padding: 10px 17px;
+
+      border-radius: 10px;
+
+      background: linear-gradient(
+        135deg,
+        #8b5cf6,
+        #6d28d9
+      );
+
+      color: white !important;
+
+      box-shadow:
+        0 0 25px rgba(139,92,246,.25);
     }
 
-    /* =========================
-       HERO
-    ========================= */
+    /* HERO */
 
     .hero {
-      min-height: 750px;
+      min-height: 90vh;
 
       display: flex;
       flex-direction: column;
@@ -249,396 +205,277 @@
 
       text-align: center;
 
-      padding: 100px 20px;
-
-      position: relative;
-    }
-
-    .hero::before {
-      content: "";
-
-      position: absolute;
-
-      width: 500px;
-      height: 500px;
-
-      border-radius: 50%;
-
-      background: rgba(139, 92, 246, 0.14);
-
-      filter: blur(100px);
-
-      animation: heroGlow 5s ease-in-out infinite;
-    }
-
-    @keyframes heroGlow {
-      0%, 100% {
-        transform: scale(0.9);
-        opacity: 0.6;
-      }
-
-      50% {
-        transform: scale(1.15);
-        opacity: 1;
-      }
-    }
-
-    .hero > * {
-      position: relative;
-      z-index: 1;
+      padding: 80px 20px;
     }
 
     .hero-logo {
-      width: 135px;
-      height: 135px;
+      font-size: 110px;
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      display: inline-block;
 
-      background: white;
-
-      border-radius: 32px;
-
-      font-size: 78px;
-
-      margin-bottom: 35px;
-
-      box-shadow:
-        0 0 0 1px rgba(255,255,255,0.15),
-        0 20px 80px rgba(0,0,0,0.5);
+      filter:
+        drop-shadow(
+          0 0 35px rgba(139,92,246,.35)
+        );
 
       animation:
-        heroLogoAppear 1s cubic-bezier(.2,.8,.2,1) both,
-        heroLogoFloat 4s ease-in-out 1s infinite;
+        heroFloat 3s ease-in-out infinite;
     }
 
-    @keyframes heroLogoAppear {
-      from {
-        opacity: 0;
-        transform: scale(0.5) rotate(-15deg);
-      }
-
-      to {
-        opacity: 1;
-        transform: scale(1) rotate(0);
-      }
-    }
-
-    @keyframes heroLogoFloat {
+    @keyframes heroFloat {
       0%, 100% {
-        transform: translateY(0);
+        transform: translateY(0) rotate(0deg);
       }
 
       50% {
-        transform: translateY(-12px);
+        transform: translateY(-12px) rotate(2deg);
       }
     }
 
     .hero h1 {
-      font-size: clamp(55px, 10vw, 105px);
+      margin-top: 20px;
 
-      line-height: 1;
-
-      margin-bottom: 25px;
+      font-size: clamp(48px, 8vw, 85px);
 
       background: linear-gradient(
         90deg,
         #ffffff,
-        #bca3ff,
+        #c4b5fd,
+        #8b5cf6,
         #ffffff
       );
 
-      background-size: 200% auto;
+      background-size: 250%;
 
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
 
       animation:
-        titleAppear 1s 0.2s ease both,
         gradientMove 5s linear infinite;
     }
 
-    @keyframes titleAppear {
-      from {
-        opacity: 0;
-        transform: translateY(35px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
     @keyframes gradientMove {
+      from {
+        background-position: 0%;
+      }
+
       to {
-        background-position: 200% center;
+        background-position: 250%;
       }
     }
 
     .hero p {
       max-width: 650px;
 
-      color: #999;
+      margin-top: 20px;
+
+      color: #9999a8;
 
       font-size: 18px;
-
-      margin-bottom: 38px;
-
-      animation: titleAppear 1s 0.4s ease both;
+      line-height: 1.6;
     }
 
-    /* =========================
-       BUTTONS
-    ========================= */
+    /* BUTTONS */
 
-    .buttons {
+    .hero-buttons {
       display: flex;
+
+      justify-content: center;
+
       gap: 15px;
 
       flex-wrap: wrap;
-      justify-content: center;
 
-      animation: titleAppear 1s 0.6s ease both;
+      margin-top: 35px;
     }
 
     .button {
       position: relative;
-      overflow: hidden;
 
-      padding: 14px 25px;
+      padding: 15px 24px;
 
-      border-radius: 13px;
+      border-radius: 12px;
+
+      text-decoration: none;
+
+      color: white;
 
       font-weight: 700;
 
+      overflow: hidden;
+
       transition:
-        transform 0.25s,
-        box-shadow 0.25s;
+        transform .25s,
+        box-shadow .25s;
     }
 
-    .button::before {
+    .button::after {
       content: "";
 
       position: absolute;
 
       top: 0;
-      left: -120%;
+      left: -100%;
 
-      width: 80%;
+      width: 70%;
       height: 100%;
 
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,0.25),
-        transparent
-      );
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255,255,255,.25),
+          transparent
+        );
 
       transform: skewX(-20deg);
 
-      transition: 0.6s;
+      transition: .5s;
     }
 
-    .button:hover::before {
-      left: 140%;
+    .button:hover::after {
+      left: 130%;
     }
 
     .button:hover {
-      transform: translateY(-5px) scale(1.03);
+      transform: translateY(-4px);
     }
 
     .primary {
-      background: #8b5cf6;
+      background: linear-gradient(
+        135deg,
+        #8b5cf6,
+        #6d28d9
+      );
 
       box-shadow:
-        0 10px 35px rgba(139,92,246,0.3);
-    }
-
-    .primary:hover {
-      box-shadow:
-        0 15px 45px rgba(139,92,246,0.5);
+        0 10px 35px rgba(109,40,217,.25);
     }
 
     .secondary {
-      background: #171720;
+      background: rgba(255,255,255,.05);
 
-      border: 1px solid #292938;
+      border: 1px solid rgba(255,255,255,.08);
     }
 
-    .secondary:hover {
-      border-color: #7650c9;
+    /* STATS */
+
+    .stats {
+      width: min(1000px, 90%);
+
+      margin: -20px auto 100px;
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 18px;
     }
 
-    /* =========================
-       SECTIONS
-    ========================= */
+    .stat {
+      padding: 30px 20px;
+
+      text-align: center;
+
+      border-radius: 18px;
+
+      background:
+        rgba(255,255,255,.035);
+
+      border:
+        1px solid rgba(255,255,255,.07);
+
+      transition: .25s;
+    }
+
+    .stat:hover {
+      transform: translateY(-5px);
+
+      border-color:
+        rgba(139,92,246,.4);
+    }
+
+    .stat h2 {
+      font-size: 32px;
+
+      margin-bottom: 7px;
+    }
+
+    .stat p {
+      color: #777;
+    }
+
+    /* SECTIONS */
 
     section {
-      padding: 110px 7%;
+      width: min(1100px, 90%);
+
+      margin: 0 auto 110px;
     }
 
     .section-title {
       text-align: center;
 
-      font-size: 44px;
-
-      margin-bottom: 15px;
+      margin-bottom: 45px;
     }
 
-    .section-subtitle {
-      text-align: center;
+    .section-title h2 {
+      font-size: 36px;
+    }
 
+    .section-title p {
       color: #777;
 
-      margin-bottom: 55px;
+      margin-top: 10px;
     }
 
-    /* SCROLL ANIMATION */
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-
-      transition:
-        opacity 0.8s ease,
-        transform 0.8s cubic-bezier(.2,.8,.2,1);
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* =========================
-       STATS
-    ========================= */
-
-    .stats {
-      display: grid;
-
-      grid-template-columns: repeat(3, 1fr);
-
-      max-width: 1000px;
-
-      margin: 0 auto;
-
-      background: rgba(17,17,26,0.8);
-
-      border: 1px solid #252532;
-
-      border-radius: 22px;
-
-      overflow: hidden;
-
-      box-shadow:
-        0 20px 70px rgba(0,0,0,0.25);
-    }
-
-    .stat {
-      text-align: center;
-
-      padding: 38px 20px;
-
-      border-right: 1px solid #252532;
-
-      transition:
-        background 0.3s,
-        transform 0.3s;
-    }
-
-    .stat:last-child {
-      border-right: none;
-    }
-
-    .stat:hover {
-      background: rgba(139,92,246,0.07);
-      transform: translateY(-4px);
-    }
-
-    .stat-number {
-      font-size: 40px;
-
-      font-weight: 800;
-
-      margin-bottom: 5px;
-    }
-
-    .stat-label {
-      color: #777;
-    }
-
-    .status-dot {
-      color: #4ade80;
-
-      animation: statusPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes statusPulse {
-      0%, 100% {
-        opacity: 1;
-        text-shadow: 0 0 0 rgba(74,222,128,0);
-      }
-
-      50% {
-        opacity: 0.65;
-        text-shadow: 0 0 18px rgba(74,222,128,0.8);
-      }
-    }
-
-    /* =========================
-       FEATURES
-    ========================= */
+    /* FEATURES */
 
     .features {
       display: grid;
 
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns:
+        repeat(3, 1fr);
 
-      gap: 20px;
-
-      max-width: 1100px;
-
-      margin: auto;
+      gap: 18px;
     }
 
     .card {
-      background: rgba(17,17,26,0.75);
+      padding: 27px;
 
-      border: 1px solid #242432;
+      border-radius: 18px;
 
-      border-radius: 19px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.055),
+          rgba(255,255,255,.025)
+        );
 
-      padding: 30px;
+      border:
+        1px solid rgba(255,255,255,.07);
 
       transition:
-        transform 0.35s cubic-bezier(.2,.8,.2,1),
-        border-color 0.35s,
-        box-shadow 0.35s;
+        transform .25s,
+        border-color .25s,
+        box-shadow .25s;
     }
 
     .card:hover {
-      transform: translateY(-10px);
+      transform: translateY(-7px);
 
-      border-color: #704bc2;
+      border-color:
+        rgba(139,92,246,.45);
 
       box-shadow:
-        0 20px 50px rgba(0,0,0,0.25);
+        0 20px 45px rgba(0,0,0,.3);
     }
 
     .card-icon {
-      font-size: 34px;
+      font-size: 30px;
 
-      margin-bottom: 16px;
-
-      display: inline-block;
-
-      transition: transform 0.3s;
-    }
-
-    .card:hover .card-icon {
-      transform: scale(1.2) rotate(-5deg);
+      margin-bottom: 18px;
     }
 
     .card h3 {
@@ -646,161 +483,163 @@
     }
 
     .card p {
-      color: #777;
+      color: #888;
+
+      line-height: 1.5;
     }
 
-    /* =========================
-       COMMANDS
-    ========================= */
+    /* COMMANDS PREVIEW */
 
-    .commands {
-      max-width: 900px;
+    .commands-preview {
+      display: grid;
 
-      margin: auto;
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 18px;
     }
 
     .command {
-      display: flex;
+      padding: 22px;
 
-      justify-content: space-between;
-      align-items: center;
+      border-radius: 16px;
 
-      background: rgba(17,17,26,0.8);
+      background:
+        rgba(255,255,255,.035);
 
-      border: 1px solid #242432;
+      border:
+        1px solid rgba(255,255,255,.07);
 
-      padding: 21px 25px;
-
-      border-radius: 14px;
-
-      margin-bottom: 13px;
-
-      transition:
-        transform 0.3s,
-        border-color 0.3s,
-        background 0.3s;
+      transition: .25s;
     }
 
     .command:hover {
-      transform: translateX(8px);
+      transform: translateY(-5px);
 
-      border-color: #704bc2;
-
-      background: #151520;
+      border-color:
+        rgba(139,92,246,.4);
     }
 
-    .command code {
-      color: #b99cff;
+    .command-code {
+      display: inline-block;
 
-      font-size: 16px;
+      padding: 7px 10px;
+
+      border-radius: 8px;
+
+      background:
+        rgba(139,92,246,.12);
+
+      color: #b794ff;
+
+      font-family: monospace;
+
+      margin-bottom: 13px;
     }
 
-    .command span {
-      color: #777;
+    .command p {
+      color: #888;
+
+      font-size: 14px;
     }
 
-    /* =========================
-       SUPPORT
-    ========================= */
+    .commands-button {
+      display: flex;
+
+      justify-content: center;
+
+      margin-top: 30px;
+    }
+
+    /* SUPPORT */
 
     .support {
       text-align: center;
 
+      padding: 60px 25px;
+
+      border-radius: 25px;
+
       background:
         radial-gradient(
           circle at center,
-          rgba(139,92,246,0.12),
-          transparent 60%
+          rgba(139,92,246,.14),
+          rgba(255,255,255,.025)
         );
+
+      border:
+        1px solid rgba(139,92,246,.15);
+    }
+
+    .support h2 {
+      font-size: 34px;
+
+      margin-bottom: 12px;
     }
 
     .support p {
-      color: #777;
+      color: #888;
 
-      max-width: 600px;
-
-      margin: 0 auto 32px;
+      margin-bottom: 28px;
     }
 
-    /* =========================
-       FOOTER
-    ========================= */
+    /* FOOTER */
 
     footer {
+      padding: 35px 20px;
+
       text-align: center;
 
-      padding: 40px 20px;
+      color: #666;
 
-      border-top: 1px solid #22222e;
-
-      color: #555;
+      border-top:
+        1px solid rgba(255,255,255,.05);
     }
 
     footer span {
-      display: inline-block;
-
-      animation: footerIce 3s ease-in-out infinite;
+      color: white;
     }
 
-    @keyframes footerIce {
-      0%, 100% {
-        transform: rotate(0);
-      }
-
-      50% {
-        transform: rotate(-10deg) translateY(-3px);
-      }
-    }
-
-    /* =========================
-       MOBILE
-    ========================= */
+    /* MOBILE */
 
     @media (max-width: 800px) {
 
-      nav ul {
+      nav {
+        padding: 15px 5%;
+      }
+
+      .nav-links {
+        gap: 10px;
+      }
+
+      .nav-links a:first-child {
         display: none;
       }
 
+      .nav-button {
+        padding: 9px 13px;
+      }
+
       .hero {
-        min-height: 680px;
+        min-height: 80vh;
       }
 
       .hero-logo {
-        width: 110px;
-        height: 110px;
+        font-size: 80px;
+      }
 
-        font-size: 65px;
+      .stats,
+      .features,
+      .commands-preview {
+        grid-template-columns: 1fr;
       }
 
       .stats {
-        grid-template-columns: 1fr;
-      }
-
-      .stat {
-        border-right: none;
-
-        border-bottom: 1px solid #252532;
-      }
-
-      .stat:last-child {
-        border-bottom: none;
-      }
-
-      .features {
-        grid-template-columns: 1fr;
+        margin-bottom: 80px;
       }
 
       section {
-        padding: 80px 5%;
-      }
-
-      .section-title {
-        font-size: 36px;
-      }
-
-      .command {
-        gap: 15px;
+        margin-bottom: 80px;
       }
     }
 
@@ -809,21 +648,18 @@
       *,
       *::before,
       *::after {
-        animation-duration: 0.01ms !important;
+        animation-duration: .01ms !important;
         animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
       }
 
-      html {
-        scroll-behavior: auto;
-      }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- PARTICULES -->
+  <!-- PARTICLES -->
 
   <div class="particles">
     <div class="particle"></div>
@@ -839,334 +675,380 @@
 
   <nav>
 
-    <a href="#" class="logo">
-      <span class="logo-icon">🍦</span>
+    <a href="index.html" class="brand">
+      <span>🍦</span>
       Sundae
     </a>
 
-    <ul>
-      <li>
-        <a href="#features">
-          Fonctionnalités
-        </a>
-      </li>
+    <div class="nav-links">
 
-      <li>
-        <a href="#commands">
-          Commandes
-        </a>
-      </li>
+      <a href="#features">
+        Fonctionnalités
+      </a>
 
-      <li>
-        <a href="#support">
-          Support
-        </a>
-      </li>
-    </ul>
+      <!-- NOUVEAU LIEN COMMANDES -->
+
+      <a href="commands.html">
+        Commandes
+      </a>
+
+      <a href="#support">
+        Support
+      </a>
+
+      <a
+        href="https://discord.com/oauth2/authorize?client_id=1548793958535004261&permissions=8&integration_type=0&scope=bot"
+        target="_blank"
+        class="nav-button"
+      >
+        Ajouter
+      </a>
+
+    </div>
 
   </nav>
 
 
   <!-- HERO -->
 
-  <header class="hero">
+  <main>
 
-    <div class="hero-logo">
-      🍦
-    </div>
+    <section class="hero">
 
-    <h1>
-      Meet Sundae.
-    </h1>
+      <div class="hero-logo">
+        🍦
+      </div>
 
-    <p>
-      Sundae est un bot Discord public pensé pour rendre
-      vos serveurs plus simples, plus amusants et plus pratiques.
-    </p>
+      <h1>
+        Sundae
+      </h1>
 
-    <div class="buttons">
-
-      <a
-        class="button primary"
-        href="https://discord.com/oauth2/authorize?client_id=1548793958535004261&permissions=8&integration_type=0&scope=bot"
-        target="_blank"
-      >
-        Ajouter Sundae
-      </a>
-
-      <a
-        class="button secondary"
-        href="https://discord.com/invite/csJF5vxT2z"
-        target="_blank"
-      >
-        Serveur Support
-      </a>
-
-    </div>
-
-  </header>
-
-
-  <!-- STATS -->
-
-  <section>
-
-    <div class="reveal">
-
-      <h2 class="section-title">
-        Sundae en chiffres
-      </h2>
-
-      <p class="section-subtitle">
-        Les statistiques actuelles du bot.
+      <p>
+        Le bot Discord simple, rapide et complet
+        pour améliorer ton serveur.
       </p>
 
-      <div class="stats">
+      <div class="hero-buttons">
 
-        <div class="stat">
+        <a
+          class="button primary"
+          href="https://discord.com/oauth2/authorize?client_id=1548793958535004261&permissions=8&integration_type=0&scope=bot"
+          target="_blank"
+        >
+          🍦 Ajouter Sundae
+        </a>
 
-          <div
-            class="stat-number"
-            id="serverCount"
-          >
-            —
-          </div>
+        <a
+          class="button secondary"
+          href="commands.html"
+        >
+          📜 Voir les commandes
+        </a>
 
-          <div class="stat-label">
-            Serveurs
-          </div>
+      </div>
 
-        </div>
-
-
-        <div class="stat">
-
-          <div
-            class="stat-number"
-            id="userCount"
-          >
-            —
-          </div>
-
-          <div class="stat-label">
-            Utilisateurs
-          </div>
-
-        </div>
+    </section>
 
 
-        <div class="stat">
+    <!-- STATS -->
 
-          <div
-            class="stat-number status-dot"
-            id="botStatus"
-          >
-            ●
-          </div>
+    <div class="stats">
 
-          <div class="stat-label">
-            Sundae est en ligne
-          </div>
+      <div class="stat">
 
-        </div>
+        <h2 id="serverCount">
+          —
+        </h2>
+
+        <p>
+          Serveurs
+        </p>
+
+      </div>
+
+
+      <div class="stat">
+
+        <h2 id="userCount">
+          —
+        </h2>
+
+        <p>
+          Membres
+        </p>
+
+      </div>
+
+
+      <div class="stat">
+
+        <h2
+          id="botStatus"
+          style="color:#4ade80;"
+        >
+          ●
+        </h2>
+
+        <p>
+          Statut
+        </p>
 
       </div>
 
     </div>
 
-  </section>
 
+    <!-- FEATURES -->
 
-  <!-- FEATURES -->
+    <section id="features">
 
-  <section id="features">
+      <div class="section-title">
 
-    <div class="reveal">
+        <h2>
+          Pourquoi Sundae ?
+        </h2>
 
-      <h2 class="section-title">
-        Fonctionnalités
-      </h2>
+        <p>
+          Tout ce qu'il faut pour ton serveur.
+        </p>
 
-      <p class="section-subtitle">
-        Tout ce dont votre serveur a besoin.
-      </p>
+      </div>
+
 
       <div class="features">
 
         <div class="card">
-          <div class="card-icon">🛡️</div>
+
+          <div class="card-icon">
+            🛡️
+          </div>
 
           <h3>
             Modération
           </h3>
 
           <p>
-            Des outils pour garder votre serveur organisé
-            et agréable.
+            Des outils pour garder ton serveur
+            propre et organisé.
           </p>
+
         </div>
 
 
         <div class="card">
-          <div class="card-icon">⚙️</div>
+
+          <div class="card-icon">
+            ⚙️
+          </div>
 
           <h3>
             Utilitaires
           </h3>
 
           <p>
-            Des commandes pratiques pour faciliter
-            la gestion de votre serveur.
+            Des commandes pratiques pour gérer
+            facilement ton serveur.
           </p>
+
         </div>
 
 
         <div class="card">
-          <div class="card-icon">🎮</div>
+
+          <div class="card-icon">
+            🎮
+          </div>
 
           <h3>
             Fun
           </h3>
 
           <p>
-            Des fonctionnalités amusantes pour votre communauté.
+            Des fonctionnalités amusantes pour
+            profiter avec ta communauté.
           </p>
+
         </div>
 
 
         <div class="card">
-          <div class="card-icon">⚡</div>
+
+          <div class="card-icon">
+            ⚡
+          </div>
 
           <h3>
             Rapide
           </h3>
 
           <p>
-            Sundae est conçu pour répondre rapidement
-            à vos commandes.
+            Des réponses rapides et une
+            expérience fluide.
           </p>
+
         </div>
 
 
         <div class="card">
-          <div class="card-icon">✨</div>
+
+          <div class="card-icon">
+            ✨
+          </div>
 
           <h3>
             Simple
           </h3>
 
           <p>
-            Une utilisation simple et accessible à tous.
+            Une utilisation simple, sans
+            configuration compliquée.
           </p>
+
         </div>
 
 
         <div class="card">
-          <div class="card-icon">🌎</div>
+
+          <div class="card-icon">
+            🌎
+          </div>
 
           <h3>
             Public
           </h3>
 
           <p>
-            Sundae est disponible pour toutes les communautés Discord.
+            Sundae est disponible pour toutes
+            les communautés Discord.
           </p>
+
         </div>
 
       </div>
 
-    </div>
-
-  </section>
+    </section>
 
 
-  <!-- COMMANDS -->
+    <!-- COMMANDS PREVIEW -->
 
-  <section id="commands">
+    <section id="commands">
 
-    <div class="reveal">
+      <div class="section-title">
 
-      <h2 class="section-title">
-        Commandes
-      </h2>
+        <h2>
+          Quelques commandes
+        </h2>
 
-      <p class="section-subtitle">
-        Quelques commandes disponibles.
-      </p>
+        <p>
+          Découvre une partie des fonctionnalités
+          disponibles avec Sundae.
+        </p>
 
-      <div class="commands">
+      </div>
+
+
+      <div class="commands-preview">
 
         <div class="command">
-          <code>/help</code>
-          <span>Afficher l'aide</span>
+
+          <div class="command-code">
+            +help
+          </div>
+
+          <p>
+            Affiche la liste des commandes
+            disponibles.
+          </p>
+
         </div>
 
-        <div class="command">
-          <code>/ping</code>
-          <span>Vérifier la latence</span>
-        </div>
 
         <div class="command">
-          <code>Bientôt...</code>
-          <span>Plus de commandes arrivent</span>
+
+          <div class="command-code">
+            +ping
+          </div>
+
+          <p>
+            Vérifie la latence actuelle du bot.
+          </p>
+
+        </div>
+
+
+        <div class="command">
+
+          <div class="command-code">
+            +stats
+          </div>
+
+          <p>
+            Affiche les statistiques actuelles
+            de Sundae.
+          </p>
+
         </div>
 
       </div>
 
-    </div>
 
-  </section>
+      <div class="commands-button">
+
+        <a
+          href="commands.html"
+          class="button primary"
+        >
+          📜 Voir toutes les commandes
+        </a>
+
+      </div>
+
+    </section>
 
 
-  <!-- SUPPORT -->
+    <!-- SUPPORT -->
 
-  <section
-    id="support"
-    class="support"
-  >
+    <section id="support">
 
-    <div class="reveal">
+      <div class="support">
 
-      <h2 class="section-title">
-        Besoin d'aide ?
-      </h2>
+        <h2>
+          Besoin d'aide ?
+        </h2>
 
-      <p>
-        Rejoins le serveur support officiel de Sundae
-        pour obtenir de l'aide et suivre le développement du bot.
-      </p>
+        <p>
+          Rejoins le serveur support de Sundae
+          pour retrouver la communauté.
+        </p>
 
-      <a
-        class="button primary"
-        href="https://discord.com/invite/csJF5vxT2z"
-        target="_blank"
-      >
-        Rejoindre le support
-      </a>
+        <a
+          href="https://discord.com/invite/csJF5vxT2z"
+          target="_blank"
+          class="button primary"
+        >
+          💬 Rejoindre le support
+        </a>
 
-    </div>
+      </div>
 
-  </section>
+    </section>
+
+  </main>
 
 
   <!-- FOOTER -->
 
   <footer>
 
-    <span>🍦</span>
-
-    © 2026 Sundae. Tous droits réservés.
+    <span>🍦 Sundae</span>
+    — Discord Bot
 
   </footer>
 
 
-  <!-- API + ANIMATIONS -->
+  <!-- API STATS -->
 
   <script>
-
-    /* =========================
-       API
-    ========================= */
 
     const API_URL =
       "https://script.google.com/macros/s/AKfycbxTDt6z2p9tye_js1_iW6GRw1XNMerl72JQcmZaY3hMxvQzaVNuapJYcydNQHJgHjUG9Q/exec";
@@ -1175,43 +1057,70 @@
     const serverCount =
       document.getElementById("serverCount");
 
+
     const userCount =
       document.getElementById("userCount");
+
 
     const botStatus =
       document.getElementById("botStatus");
 
 
-    function animateNumber(element, target) {
+    function animateNumber(
+      element,
+      target
+    ) {
 
       const duration = 1000;
 
-      const startTime = performance.now();
+      const startTime =
+        performance.now();
+
 
       function update(currentTime) {
 
         const progress =
           Math.min(
-            (currentTime - startTime) / duration,
+            (currentTime - startTime)
+              / duration,
             1
           );
 
+
         const eased =
-          1 - Math.pow(1 - progress, 3);
+          1 - Math.pow(
+            1 - progress,
+            3
+          );
+
 
         const value =
-          Math.floor(target * eased);
+          Math.floor(
+            target * eased
+          );
+
 
         element.textContent =
-          value.toLocaleString("fr-FR");
+          value.toLocaleString(
+            "fr-FR"
+          );
+
 
         if (progress < 1) {
-          requestAnimationFrame(update);
+
+          requestAnimationFrame(
+            update
+          );
+
         }
 
       }
 
-      requestAnimationFrame(update);
+
+      requestAnimationFrame(
+        update
+      );
+
     }
 
 
@@ -1222,7 +1131,9 @@
         .then(response => {
 
           if (!response.ok) {
-            throw new Error("API inaccessible");
+            throw new Error(
+              "API inaccessible"
+            );
           }
 
           return response.json();
@@ -1275,11 +1186,15 @@
             error
           );
 
-          serverCount.textContent = "—";
 
-          userCount.textContent = "—";
+          serverCount.textContent =
+            "—";
 
-          botStatus.textContent = "●";
+          userCount.textContent =
+            "—";
+
+          botStatus.textContent =
+            "●";
 
           botStatus.style.color =
             "#ef4444";
@@ -1292,88 +1207,9 @@
     updateStats();
 
 
-    /*
-      Actualisation toutes les 5 minutes
-    */
-
     setInterval(
       updateStats,
       5 * 60 * 1000
-    );
-
-
-    /* =========================
-       SCROLL REVEAL
-    ========================= */
-
-    const revealElements =
-      document.querySelectorAll(".reveal");
-
-
-    const observer =
-      new IntersectionObserver(
-
-        entries => {
-
-          entries.forEach(entry => {
-
-            if (entry.isIntersecting) {
-
-              entry.target.classList.add(
-                "visible"
-              );
-
-            }
-
-          });
-
-        },
-
-        {
-          threshold: 0.12
-        }
-
-      );
-
-
-    revealElements.forEach(element => {
-
-      observer.observe(element);
-
-    });
-
-
-    /* =========================
-       PARALLAX SOURIS
-    ========================= */
-
-    const heroLogo =
-      document.querySelector(".hero-logo");
-
-
-    document.addEventListener(
-      "mousemove",
-      event => {
-
-        if (window.innerWidth < 800) {
-          return;
-        }
-
-        const x =
-          (event.clientX /
-            window.innerWidth -
-            0.5) * 10;
-
-        const y =
-          (event.clientY /
-            window.innerHeight -
-            0.5) * 10;
-
-
-        heroLogo.style.transform =
-          `translate(${x}px, ${y}px)`;
-
-      }
     );
 
   </script>
