@@ -1,723 +1,756 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Sundae — Commandes</title>
+  <title>Commandes — Sundae</title>
 
   <style>
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
     }
 
-    html {
-      scroll-behavior: smooth;
+    html{
+      scroll-behavior:smooth;
     }
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
+    body{
 
-      background: #08080f;
-
-      color: white;
-
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-
-      position: fixed;
-
-      inset: 0;
-
-      z-index: -2;
+      font-family:Arial,Helvetica,sans-serif;
 
       background:
         radial-gradient(
-          circle at 15% 10%,
-          rgba(139,92,246,.15),
+          circle at 20% 10%,
+          rgba(139,92,246,.16),
           transparent 30%
         ),
         radial-gradient(
-          circle at 85% 35%,
-          rgba(124,58,237,.10),
+          circle at 80% 40%,
+          rgba(168,85,247,.12),
           transparent 30%
-        );
+        ),
+        #07070d;
+
+      color:white;
+
+      overflow-x:hidden;
     }
 
-    /* NAVBAR */
+    /* =========================
+       BACKGROUND
+    ========================= */
 
-    nav {
-      position: sticky;
-
-      top: 0;
-
-      z-index: 1000;
-
-      width: 100%;
-
-      background:
-        rgba(8,8,15,.88);
-
-      backdrop-filter:
-        blur(18px);
-
-      border-bottom:
-        1px solid rgba(255,255,255,.06);
+    .background{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      z-index:-2;
+      overflow:hidden;
     }
 
-    .nav-inner {
-      width:
-        min(1150px, calc(100% - 32px));
+    .orb{
 
-      min-height: 70px;
+      position:absolute;
 
-      margin: auto;
+      width:350px;
+      height:350px;
 
-      display: flex;
+      border-radius:50%;
 
-      align-items: center;
+      filter:blur(100px);
 
-      justify-content: space-between;
+      opacity:.18;
 
-      gap: 20px;
+      animation:floatOrb 12s ease-in-out infinite alternate;
     }
 
-    .brand {
-      flex-shrink: 0;
-
-      display: flex;
-
-      align-items: center;
-
-      gap: 9px;
-
-      color: white;
-
-      text-decoration: none;
-
-      font-size: 21px;
-
-      font-weight: 800;
+    .orb.one{
+      background:#8b5cf6;
+      top:-120px;
+      left:-100px;
     }
 
-    .brand-logo {
-      font-size: 28px;
-
-      line-height: 1;
+    .orb.two{
+      background:#c084fc;
+      right:-120px;
+      top:40%;
+      animation-delay:3s;
     }
 
-    .nav-links {
-      display: flex;
-
-      align-items: center;
-
-      justify-content: flex-end;
-
-      gap: 8px;
-
-      flex-wrap: wrap;
+    .orb.three{
+      background:#7c3aed;
+      bottom:-150px;
+      left:35%;
+      animation-delay:6s;
     }
 
-    .nav-links a {
-      display: inline-flex;
+    @keyframes floatOrb{
 
-      align-items: center;
+      from{
+        transform:translate(0,0) scale(1);
+      }
 
-      justify-content: center;
+      to{
+        transform:translate(70px,-40px) scale(1.2);
+      }
 
-      padding: 9px 13px;
-
-      border-radius: 10px;
-
-      color: #9d9daa;
-
-      text-decoration: none;
-
-      font-size: 14px;
-
-      font-weight: 700;
-
-      transition: .2s;
     }
 
-    .nav-links a:hover {
-      color: white;
+    /* =========================
+       NAVBAR
+    ========================= */
 
-      background:
-        rgba(255,255,255,.05);
+    nav{
+
+      position:fixed;
+
+      top:0;
+      left:0;
+
+      width:100%;
+
+      z-index:1000;
+
+      padding:16px 5%;
+
+      background:rgba(7,7,13,.72);
+
+      backdrop-filter:blur(18px);
+
+      border-bottom:1px solid rgba(255,255,255,.06);
     }
 
-    .nav-links .active {
-      color: white;
+    .nav-inner{
 
-      background:
-        rgba(139,92,246,.12);
+      max-width:1200px;
+
+      margin:auto;
+
+      display:flex;
+
+      align-items:center;
+
+      justify-content:space-between;
+
+      gap:20px;
     }
 
-    .nav-links .add-button {
-      color: white;
+    .brand{
 
-      background:
-        linear-gradient(
-          135deg,
-          #8b5cf6,
-          #6d28d9
-        );
+      display:flex;
+
+      align-items:center;
+
+      gap:10px;
+
+      color:white;
+
+      text-decoration:none;
+
+      font-weight:800;
+
+      font-size:20px;
+    }
+
+    .brand-logo{
+
+      width:40px;
+      height:40px;
+
+      display:grid;
+
+      place-items:center;
+
+      background:rgba(255,255,255,.06);
+
+      border:1px solid rgba(255,255,255,.1);
+
+      border-radius:12px;
+
+      font-size:24px;
+
+      box-shadow:0 0 25px rgba(168,85,247,.18);
+
+      animation:logoFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes logoFloat{
+
+      0%,100%{
+        transform:translateY(0) rotate(-2deg);
+      }
+
+      50%{
+        transform:translateY(-5px) rotate(2deg);
+      }
+
+    }
+
+    .nav-links{
+
+      display:flex;
+
+      align-items:center;
+
+      gap:8px;
+    }
+
+    .nav-links a{
+
+      color:#aaa;
+
+      text-decoration:none;
+
+      padding:10px 14px;
+
+      border-radius:10px;
+
+      font-size:14px;
+
+      transition:.25s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active{
+
+      color:white;
+
+      background:rgba(139,92,246,.14);
+    }
+
+    .nav-add{
+
+      background:linear-gradient(
+        135deg,
+        #8b5cf6,
+        #a855f7
+      ) !important;
+
+      color:white !important;
 
       box-shadow:
-        0 5px 20px rgba(109,40,217,.2);
+        0 8px 25px rgba(139,92,246,.25);
     }
 
-    /* HEADER */
+    .nav-add:hover{
 
-    .header {
-      width:
-        min(900px, calc(100% - 32px));
-
-      margin: auto;
-
-      text-align: center;
-
-      padding:
-        90px 20px 55px;
-    }
-
-    .header-logo {
-      display: inline-block;
-
-      font-size:
-        clamp(65px, 11vw, 95px);
-
-      line-height: 1;
-
-      filter:
-        drop-shadow(
-          0 0 35px rgba(139,92,246,.35)
-        );
-
-      animation:
-        heroFloat 3s ease-in-out infinite;
-    }
-
-    @keyframes heroFloat {
-
-      0%, 100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-10px);
-      }
-
-    }
-
-    .header h1 {
-      margin-top: 22px;
-
-      font-size:
-        clamp(45px, 8vw, 70px);
-
-      background:
-        linear-gradient(
-          90deg,
-          #fff,
-          #c4b5fd,
-          #8b5cf6,
-          #fff
-        );
-
-      background-size: 250%;
-
-      -webkit-background-clip: text;
-
-      -webkit-text-fill-color: transparent;
-
-      animation:
-        gradientMove 5s linear infinite;
-    }
-
-    @keyframes gradientMove {
-
-      from {
-        background-position: 0%;
-      }
-
-      to {
-        background-position: 250%;
-      }
-
-    }
-
-    .header p {
-      max-width: 620px;
-
-      margin:
-        18px auto 0;
-
-      color: #9999a8;
-
-      font-size: 17px;
-
-      line-height: 1.6;
-    }
-
-    /* SEARCH */
-
-    .search-container {
-      width:
-        min(650px, calc(100% - 32px));
-
-      margin:
-        0 auto 70px;
-    }
-
-    .search {
-      width: 100%;
-
-      padding:
-        16px 19px;
-
-      border-radius: 13px;
-
-      border:
-        1px solid rgba(255,255,255,.08);
-
-      outline: none;
-
-      background:
-        rgba(255,255,255,.04);
-
-      color: white;
-
-      font-size: 15px;
-
-      transition: .25s;
-    }
-
-    .search::placeholder {
-      color: #777;
-    }
-
-    .search:focus {
-
-      border-color:
-        rgba(139,92,246,.65);
+      transform:translateY(-2px);
 
       box-shadow:
-        0 0 0 4px rgba(139,92,246,.08);
+        0 12px 35px rgba(139,92,246,.4);
     }
 
-    /* CATEGORY */
+    /* =========================
+       MAIN
+    ========================= */
 
-    .category {
+    main{
 
-      width:
-        min(1100px, calc(100% - 32px));
+      max-width:1050px;
 
-      margin:
-        0 auto 75px;
+      margin:auto;
+
+      padding:180px 25px 100px;
     }
 
-    .category-title {
+    .top{
 
-      display: flex;
+      text-align:center;
 
-      align-items: center;
-
-      gap: 13px;
-
-      margin-bottom: 23px;
+      margin-bottom:50px;
     }
 
-    .category-icon {
+    .top-badge{
 
-      width: 43px;
+      display:inline-block;
 
-      height: 43px;
+      padding:8px 14px;
 
-      flex-shrink: 0;
+      border-radius:999px;
 
-      display: flex;
+      background:rgba(139,92,246,.09);
 
-      align-items: center;
+      border:1px solid rgba(168,85,247,.25);
 
-      justify-content: center;
+      color:#c084fc;
 
-      border-radius: 12px;
+      font-size:13px;
 
-      background:
-        rgba(139,92,246,.12);
+      font-weight:700;
 
-      font-size: 21px;
+      margin-bottom:18px;
+
+      animation:fadeUp .7s ease both;
     }
 
-    .category-title h2 {
-      font-size: 25px;
+    h1{
+
+      font-size:clamp(
+        45px,
+        8vw,
+        75px
+      );
+
+      letter-spacing:-3px;
+
+      background:linear-gradient(
+        90deg,
+        #fff,
+        #c084fc,
+        #fff,
+        #a855f7,
+        #fff
+      );
+
+      background-size:300% auto;
+
+      -webkit-background-clip:text;
+
+      background-clip:text;
+
+      color:transparent;
+
+      animation:
+        gradientMove 6s linear infinite,
+        fadeUp .7s ease .15s both;
     }
 
-    .category-title p {
-      margin-top: 4px;
+    @keyframes gradientMove{
 
-      color: #777;
+      to{
+        background-position:300% center;
+      }
 
-      font-size: 13px;
     }
 
-    /* COMMAND GRID */
+    .top p{
 
-    .commands-grid {
+      color:#888;
 
-      display: grid;
+      max-width:600px;
+
+      margin:20px auto 0;
+
+      line-height:1.7;
+
+      animation:fadeUp .7s ease .3s both;
+    }
+
+    @keyframes fadeUp{
+
+      from{
+        opacity:0;
+        transform:translateY(25px);
+      }
+
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+
+    }
+
+    /* =========================
+       SEARCH
+    ========================= */
+
+    .search-box{
+
+      max-width:650px;
+
+      margin:0 auto 50px;
+
+      position:relative;
+    }
+
+    .search{
+
+      width:100%;
+
+      padding:17px 20px;
+
+      border-radius:15px;
+
+      border:1px solid rgba(255,255,255,.08);
+
+      outline:none;
+
+      background:rgba(255,255,255,.035);
+
+      color:white;
+
+      font-size:15px;
+
+      transition:.3s;
+    }
+
+    .search::placeholder{
+      color:#666;
+    }
+
+    .search:focus{
+
+      border-color:rgba(168,85,247,.5);
+
+      box-shadow:
+        0 0 35px rgba(139,92,246,.12);
+    }
+
+    /* =========================
+       CATEGORY
+    ========================= */
+
+    .category{
+
+      margin-bottom:55px;
+    }
+
+    .category-title{
+
+      display:flex;
+
+      align-items:center;
+
+      gap:12px;
+
+      margin-bottom:18px;
+
+      font-size:22px;
+    }
+
+    .category-title span{
+
+      display:grid;
+
+      place-items:center;
+
+      width:38px;
+      height:38px;
+
+      border-radius:11px;
+
+      background:rgba(139,92,246,.1);
+
+      border:1px solid rgba(168,85,247,.15);
+    }
+
+    .commands{
+
+      display:grid;
 
       grid-template-columns:
-        repeat(3, 1fr);
+        repeat(2,1fr);
 
-      gap: 17px;
+      gap:15px;
     }
 
-    .command-card {
+    .command{
 
-      position: relative;
+      position:relative;
 
-      padding: 23px;
+      overflow:hidden;
 
-      border-radius: 17px;
+      padding:22px;
+
+      border-radius:18px;
+
+      border:1px solid rgba(255,255,255,.07);
 
       background:
         linear-gradient(
           145deg,
-          rgba(255,255,255,.055),
-          rgba(255,255,255,.025)
+          rgba(255,255,255,.05),
+          rgba(255,255,255,.018)
         );
 
-      border:
-        1px solid rgba(255,255,255,.07);
-
       transition:
-        transform .25s,
-        border-color .25s,
-        box-shadow .25s;
+        transform .3s,
+        border .3s,
+        box-shadow .3s;
     }
 
-    .command-card:hover {
+    .command::after{
 
-      transform:
-        translateY(-6px);
+      content:"";
 
-      border-color:
-        rgba(139,92,246,.42);
+      position:absolute;
+
+      width:100px;
+      height:100px;
+
+      background:#8b5cf6;
+
+      filter:blur(65px);
+
+      right:-50px;
+      top:-50px;
+
+      opacity:0;
+
+      transition:.4s;
+    }
+
+    .command:hover{
+
+      transform:translateY(-6px);
+
+      border-color:rgba(168,85,247,.35);
 
       box-shadow:
-        0 18px 40px rgba(0,0,0,.28);
+        0 15px 40px rgba(0,0,0,.25);
     }
 
-    .command-card h3 {
-
-      font-size: 17px;
-
-      margin-bottom: 10px;
+    .command:hover::after{
+      opacity:.16;
     }
 
-    .command-code {
+    .command-top{
 
-      display: inline-block;
+      display:flex;
 
-      padding: 7px 10px;
+      align-items:center;
 
-      margin-bottom: 14px;
+      justify-content:space-between;
 
-      border-radius: 8px;
+      gap:10px;
 
-      background:
-        rgba(139,92,246,.12);
-
-      color: #b794ff;
-
-      font-family: monospace;
-
-      font-size: 13px;
+      margin-bottom:12px;
     }
 
-    .command-card p {
+    .command-name{
 
-      color: #898995;
+      font-family:
+        Consolas,
+        monospace;
 
-      line-height: 1.5;
+      font-size:17px;
 
-      font-size: 14px;
+      font-weight:800;
+
+      color:#c084fc;
     }
 
-    .soon {
+    .tag{
 
-      position: absolute;
+      padding:5px 8px;
 
-      top: 17px;
+      border-radius:7px;
 
-      right: 17px;
+      font-size:9px;
 
-      padding:
-        5px 7px;
+      font-weight:800;
 
-      border-radius: 7px;
+      background:rgba(74,222,128,.09);
 
-      background:
-        rgba(255,255,255,.05);
+      color:#4ade80;
 
-      color: #777;
-
-      font-size: 10px;
-
-      font-weight: 800;
+      border:1px solid rgba(74,222,128,.15);
     }
 
-    /* NO RESULT */
+    .tag.soon{
 
-    .no-result {
+      background:rgba(250,204,21,.08);
 
-      display: none;
+      color:#facc15;
 
-      text-align: center;
-
-      color: #777;
-
-      padding:
-        30px 20px 80px;
+      border-color:rgba(250,204,21,.15);
     }
 
-    /* CTA */
+    .command p{
 
-    .cta {
+      color:#888;
 
-      width:
-        min(1000px, calc(100% - 32px));
+      font-size:13px;
 
-      margin:
-        100px auto;
+      line-height:1.6;
+    }
 
-      padding:
-        55px 25px;
+    /* =========================
+       EMPTY SEARCH
+    ========================= */
 
-      text-align: center;
+    #noResults{
 
-      border-radius: 25px;
+      display:none;
+
+      text-align:center;
+
+      padding:30px;
+
+      color:#777;
+    }
+
+    /* =========================
+       CTA
+    ========================= */
+
+    .bottom{
+
+      text-align:center;
+
+      margin-top:80px;
+
+      padding:55px 20px;
+
+      border-radius:28px;
 
       background:
         radial-gradient(
-          circle at center,
-          rgba(139,92,246,.14),
-          rgba(255,255,255,.025)
-        );
+          circle at 50% 0%,
+          rgba(139,92,246,.2),
+          transparent 55%
+        ),
+        rgba(255,255,255,.025);
 
-      border:
-        1px solid rgba(139,92,246,.15);
+      border:1px solid rgba(255,255,255,.07);
     }
 
-    .cta h2 {
+    .bottom h2{
 
-      font-size: 31px;
+      font-size:35px;
 
-      margin-bottom: 12px;
+      margin-bottom:12px;
     }
 
-    .cta p {
+    .bottom p{
 
-      color: #888;
+      color:#888;
 
-      margin-bottom: 27px;
+      margin-bottom:25px;
     }
 
-    .buttons {
+    .button{
 
-      display: flex;
+      display:inline-flex;
 
-      justify-content: center;
+      align-items:center;
 
-      flex-wrap: wrap;
+      justify-content:center;
 
-      gap: 12px;
+      padding:14px 22px;
+
+      border-radius:13px;
+
+      text-decoration:none;
+
+      font-weight:700;
+
+      transition:.3s;
     }
 
-    .button {
-
-      display: inline-flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      padding:
-        14px 21px;
-
-      border-radius: 12px;
-
-      text-decoration: none;
-
-      color: white;
-
-      font-weight: 700;
-
-      transition: .2s;
-    }
-
-    .button:hover {
-      transform:
-        translateY(-3px);
-    }
-
-    .primary {
+    .primary{
 
       background:
         linear-gradient(
           135deg,
           #8b5cf6,
-          #6d28d9
+          #a855f7
         );
 
+      color:white;
+
       box-shadow:
-        0 10px 30px rgba(109,40,217,.22);
+        0 10px 35px rgba(139,92,246,.28);
     }
 
-    .secondary {
+    .primary:hover{
 
-      background:
-        rgba(255,255,255,.05);
+      transform:translateY(-4px);
 
-      border:
-        1px solid rgba(255,255,255,.08);
+      box-shadow:
+        0 18px 45px rgba(139,92,246,.45);
     }
 
-    /* FOOTER */
+    /* =========================
+       FOOTER
+    ========================= */
 
-    footer {
+    footer{
 
-      padding:
-        35px 20px;
+      border-top:1px solid rgba(255,255,255,.06);
 
-      text-align: center;
+      padding:35px 20px;
 
-      color: #666;
+      text-align:center;
 
-      border-top:
-        1px solid rgba(255,255,255,.05);
+      color:#666;
+
+      font-size:13px;
     }
 
-    footer span {
-      color: white;
+    footer strong{
+      color:#a855f7;
     }
 
-    /* MOBILE */
+    /* =========================
+       MOBILE
+    ========================= */
 
-    @media (max-width: 800px) {
+    @media(max-width:800px){
 
-      .nav-inner {
-
-        width:
-          calc(100% - 20px);
-
-        min-height: 64px;
-
-        gap: 8px;
+      nav{
+        padding:10px 12px;
       }
 
-      .brand {
+      .nav-inner{
 
-        font-size: 18px;
+        flex-direction:column;
 
-        gap: 5px;
+        gap:10px;
       }
 
-      .brand-logo {
-        font-size: 24px;
+      .nav-links{
+
+        width:100%;
+
+        justify-content:center;
+
+        flex-wrap:wrap;
       }
 
-      .nav-links {
-        gap: 3px;
+      .nav-links a{
+
+        padding:7px 9px;
+
+        font-size:12px;
       }
 
-      .nav-links a {
+      .brand{
 
-        padding:
-          8px 7px;
-
-        font-size: 11px;
+        font-size:18px;
       }
 
-      .nav-links .add-button {
+      .brand-logo{
 
-        padding:
-          8px 9px;
+        width:34px;
+        height:34px;
+
+        font-size:20px;
       }
 
-      .header {
+      main{
 
-        padding:
-          70px 15px 45px;
+        padding-top:190px;
       }
 
-      .header-logo {
-        font-size: 70px;
+      .commands{
+
+        grid-template-columns:1fr;
       }
 
-      .commands-grid {
-        grid-template-columns: 1fr;
+      h1{
+
+        letter-spacing:-2px;
       }
 
-      .category {
-        margin-bottom: 60px;
-      }
+      .bottom h2{
 
-    }
-
-    @media (max-width: 430px) {
-
-      .nav-inner {
-
-        width:
-          calc(100% - 12px);
-      }
-
-      .brand {
-
-        font-size: 16px;
-      }
-
-      .brand-logo {
-        font-size: 21px;
-      }
-
-      .nav-links a {
-
-        padding:
-          7px 5px;
-
-        font-size: 10px;
-      }
-
-      .nav-links .add-button {
-
-        padding:
-          7px 7px;
-      }
-
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-
-      *,
-      *::before,
-      *::after {
-
-        animation-duration:
-          0.01ms !important;
-
-        animation-iteration-count:
-          1 !important;
+        font-size:29px;
       }
 
     }
@@ -727,63 +760,63 @@
 
 <body>
 
+<div class="background">
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+  <div class="orb three"></div>
+</div>
 
-  <!-- NAVBAR -->
+<!-- NAV -->
 
-  <nav>
+<nav>
 
-    <div class="nav-inner">
+  <div class="nav-inner">
 
-      <a
-        href="index.html"
-        class="brand"
-      >
-        <span class="brand-logo">
-          🍦
-        </span>
+    <a href="index.html" class="brand">
 
-        Sundae
+      <span class="brand-logo">
+        🍦
+      </span>
+
+      Sundae
+
+    </a>
+
+    <div class="nav-links">
+
+      <a href="index.html">
+        Accueil
       </a>
 
+      <a href="commands.html" class="active">
+        Commandes
+      </a>
 
-      <div class="nav-links">
+      <a href="index.html#support">
+        Support
+      </a>
 
-        <a href="index.html">
-          Accueil
-        </a>
-
-        <a
-          href="commands.html"
-          class="active"
-        >
-          Commandes
-        </a>
-
-        <a href="index.html#support">
-          Support
-        </a>
-
-        <a
-          href="https://discord.com/oauth2/authorize?client_id=1548793958535004261&permissions=8&integration_type=0&scope=bot"
-          target="_blank"
-          class="add-button"
-        >
-          Ajouter
-        </a>
-
-      </div>
+      <a
+        href="https://discord.com/oauth2/authorize?client_id=1548793958535004261&permissions=8&integration_type=0&scope=bot"
+        class="nav-add"
+        target="_blank"
+      >
+        Ajouter
+      </a>
 
     </div>
 
-  </nav>
+  </div>
+
+</nav>
 
 
-  <!-- HEADER -->
+<main>
 
-  <header class="header">
+  <div class="top">
 
-    <div class="header-logo">
-      🍦
+    <div class="top-badge">
+      🍦 Centre de commandes
     </div>
 
     <h1>
@@ -791,22 +824,22 @@
     </h1>
 
     <p>
-      Découvre les commandes disponibles
-      avec Sundae et retrouve facilement
-      celle dont tu as besoin.
+      Retrouve rapidement les commandes disponibles
+      et découvre les prochaines fonctionnalités
+      de Sundae.
     </p>
 
-  </header>
+  </div>
 
 
   <!-- SEARCH -->
 
-  <div class="search-container">
+  <div class="search-box">
 
     <input
+      type="text"
       id="search"
       class="search"
-      type="text"
       placeholder="🔎 Rechercher une commande..."
       autocomplete="off"
     >
@@ -816,187 +849,148 @@
 
   <!-- MODERATION -->
 
-  <section class="category">
+  <div class="category">
 
     <div class="category-title">
-
-      <div class="category-icon">
-        🛡️
-      </div>
-
-      <div>
-
-        <h2>
-          Modération
-        </h2>
-
-        <p>
-          Garde ton serveur propre et organisé.
-        </p>
-
-      </div>
-
+      <span>🛡️</span>
+      Modération
     </div>
 
+    <div class="commands">
 
-    <div class="commands-grid">
+      <div class="command">
 
+        <div class="command-top">
 
-      <article
-        class="command-card"
-        data-search="ban bannissement"
-      >
+          <div class="command-name">
+            +ban
+          </div>
 
-        <span class="soon">
-          BIENTÔT
-        </span>
+          <div class="tag soon">
+            BIENTÔT
+          </div>
 
-        <h3>
-          Ban
-        </h3>
-
-        <div class="command-code">
-          +ban
         </div>
 
         <p>
-          Bannis un membre de ton serveur.
+          Bannit un membre du serveur.
         </p>
 
-      </article>
+      </div>
 
 
-      <article
-        class="command-card"
-        data-search="kick expulsion"
-      >
+      <div class="command">
 
-        <span class="soon">
-          BIENTÔT
-        </span>
+        <div class="command-top">
 
-        <h3>
-          Kick
-        </h3>
+          <div class="command-name">
+            +kick
+          </div>
 
-        <div class="command-code">
-          +kick
+          <div class="tag soon">
+            BIENTÔT
+          </div>
+
         </div>
 
         <p>
-          Expulse un membre de ton serveur.
+          Expulse un membre du serveur.
         </p>
 
-      </article>
+      </div>
 
 
-      <article
-        class="command-card"
-        data-search="clear purge messages"
-      >
+      <div class="command">
 
-        <span class="soon">
-          BIENTÔT
-        </span>
+        <div class="command-top">
 
-        <h3>
-          Clear
-        </h3>
+          <div class="command-name">
+            +clear
+          </div>
 
-        <div class="command-code">
-          +clear
+          <div class="tag soon">
+            BIENTÔT
+          </div>
+
         </div>
 
         <p>
           Supprime plusieurs messages rapidement.
         </p>
 
-      </article>
+      </div>
 
     </div>
 
-  </section>
+  </div>
 
 
   <!-- UTILITAIRES -->
 
-  <section class="category">
+  <div class="category">
 
     <div class="category-title">
-
-      <div class="category-icon">
-        ⚙️
-      </div>
-
-      <div>
-
-        <h2>
-          Utilitaires
-        </h2>
-
-        <p>
-          Des outils pratiques pour ton serveur.
-        </p>
-
-      </div>
-
+      <span>🔧</span>
+      Utilitaires
     </div>
 
+    <div class="commands">
 
-    <div class="commands-grid">
+      <div class="command">
 
+        <div class="command-top">
 
-      <article
-        class="command-card"
-        data-search="help aide"
-      >
+          <div class="command-name">
+            +help
+          </div>
 
-        <h3>
-          Aide
-        </h3>
+          <div class="tag">
+            DISPONIBLE
+          </div>
 
-        <div class="command-code">
-          +help
         </div>
 
         <p>
-          Affiche les commandes disponibles.
+          Affiche les informations et les commandes
+          disponibles de Sundae.
         </p>
 
-      </article>
+      </div>
 
 
-      <article
-        class="command-card"
-        data-search="ping latence"
-      >
+      <div class="command">
 
-        <h3>
-          Ping
-        </h3>
+        <div class="command-top">
 
-        <div class="command-code">
-          +ping
+          <div class="command-name">
+            +ping
+          </div>
+
+          <div class="tag">
+            DISPONIBLE
+          </div>
+
         </div>
 
         <p>
-          Vérifie la latence actuelle du bot.
+          Vérifie la latence du bot.
         </p>
 
-      </article>
+      </div>
 
 
-      <article
-        class="command-card"
-        data-search="stats statistiques"
-      >
+      <div class="command">
 
-        <h3>
-          Statistiques
-        </h3>
+        <div class="command-top">
 
-        <div class="command-code">
-          +stats
+          <div class="command-name">
+            +stats
+          </div>
+
+          <div class="tag">
+            DISPONIBLE
+          </div>
+
         </div>
 
         <p>
@@ -1004,269 +998,182 @@
           de Sundae.
         </p>
 
-      </article>
+      </div>
 
     </div>
 
-  </section>
+  </div>
 
 
   <!-- FUN -->
 
-  <section class="category">
+  <div class="category">
 
     <div class="category-title">
+      <span>🎉</span>
+      Fun
+    </div>
 
-      <div class="category-icon">
-        🎮
-      </div>
+    <div class="commands">
 
-      <div>
+      <div class="command">
 
-        <h2>
-          Fun
-        </h2>
+        <div class="command-top">
+
+          <div class="command-name">
+            +8ball
+          </div>
+
+          <div class="tag soon">
+            BIENTÔT
+          </div>
+
+        </div>
 
         <p>
-          Des commandes pour mettre l'ambiance.
+          Pose une question et laisse Sundae
+          décider de ton destin.
+        </p>
+
+      </div>
+
+
+      <div class="command">
+
+        <div class="command-top">
+
+          <div class="command-name">
+            +meme
+          </div>
+
+          <div class="tag soon">
+            BIENTÔT
+          </div>
+
+        </div>
+
+        <p>
+          Envoie un contenu fun dans ton serveur.
         </p>
 
       </div>
 
     </div>
 
-
-    <div class="commands-grid">
-
-
-      <article
-        class="command-card"
-        data-search="fun"
-      >
-
-        <span class="soon">
-          BIENTÔT
-        </span>
-
-        <h3>
-          Commandes Fun
-        </h3>
-
-        <div class="command-code">
-          À venir
-        </div>
-
-        <p>
-          De nouvelles commandes fun arriveront
-          prochainement.
-        </p>
-
-      </article>
+  </div>
 
 
-      <article
-        class="command-card"
-        data-search="jeux mini jeux"
-      >
-
-        <span class="soon">
-          BIENTÔT
-        </span>
-
-        <h3>
-          Mini-jeux
-        </h3>
-
-        <div class="command-code">
-          À venir
-        </div>
-
-        <p>
-          Des mini-jeux pour jouer avec
-          les membres.
-        </p>
-
-      </article>
-
-
-      <article
-        class="command-card"
-        data-search="surprise"
-      >
-
-        <span class="soon">
-          BIENTÔT
-        </span>
-
-        <h3>
-          Surprises
-        </h3>
-
-        <div class="command-code">
-          À venir
-        </div>
-
-        <p>
-          De nouvelles fonctionnalités
-          arriveront prochainement.
-        </p>
-
-      </article>
-
-    </div>
-
-  </section>
-
-
-  <div
-    id="noResult"
-    class="no-result"
-  >
-    😕 Aucune commande trouvée.
+  <div id="noResults">
+    😭 Aucune commande trouvée.
   </div>
 
 
   <!-- CTA -->
 
-  <section class="cta">
+  <div class="bottom">
 
     <h2>
-      Prêt à essayer Sundae ?
+      Une commande te manque ? 🍦
     </h2>
 
     <p>
-      Ajoute Sundae à ton serveur et
-      découvre toutes ses fonctionnalités.
+      Sundae évolue constamment.
+      De nouvelles commandes arrivent bientôt.
     </p>
 
+    <a
+      href="https://discord.com/oauth2/authorize?client_id=1548793958535004261&permissions=8&integration_type=0&scope=bot"
+      class="button primary"
+      target="_blank"
+    >
+      Ajouter Sundae
+    </a>
 
-    <div class="buttons">
+  </div>
 
-      <a
-        class="button primary"
-        href="https://discord.com/oauth2/authorize?client_id=1548793958535004261&permissions=8&integration_type=0&scope=bot"
-        target="_blank"
-      >
-        🍦 Ajouter Sundae
-      </a>
-
-
-      <a
-        class="button secondary"
-        href="index.html"
-      >
-        🏠 Retour à l'accueil
-      </a>
-
-    </div>
-
-  </section>
+</main>
 
 
-  <!-- FOOTER -->
+<footer>
 
-  <footer>
+  🍦 <strong>Sundae</strong>
+  — Tous droits réservés.
 
-    <span>
-      🍦 Sundae
-    </span>
-
-    — Discord Bot
-
-  </footer>
+</footer>
 
 
-  <!-- SEARCH -->
+<script>
 
-  <script>
+  /* =========================
+     COMMAND SEARCH
+  ========================= */
 
-    const search =
-      document.getElementById("search");
+  const search =
+    document.getElementById("search");
 
-    const cards =
-      document.querySelectorAll(
-        ".command-card"
-      );
+  const commands =
+    document.querySelectorAll(".command");
 
-    const categories =
-      document.querySelectorAll(
-        ".category"
-      );
+  const categories =
+    document.querySelectorAll(".category");
 
-    const noResult =
-      document.getElementById(
-        "noResult"
-      );
+  const noResults =
+    document.getElementById("noResults");
 
 
-    search.addEventListener(
-      "input",
-      () => {
+  search.addEventListener("input", () => {
 
-        const query =
-          search.value
-            .toLowerCase()
-            .trim();
+    const value =
+      search.value
+        .toLowerCase()
+        .trim();
 
-        let found = 0;
+    let found = 0;
 
+    commands.forEach(command => {
 
-        cards.forEach(card => {
+      const text =
+        command.textContent
+          .toLowerCase();
 
-          const text =
-            (
-              card.innerText +
-              " " +
-              card.dataset.search
-            ).toLowerCase();
+      if(text.includes(value)){
 
+        command.style.display = "";
 
-          if (
-            text.includes(query)
-          ) {
+        found++;
 
-            card.style.display =
-              "";
+      }else{
 
-            found++;
-
-          } else {
-
-            card.style.display =
-              "none";
-
-          }
-
-        });
-
-
-        categories.forEach(
-          category => {
-
-            const visible =
-              category.querySelectorAll(
-                ".command-card:not([style*='display: none'])"
-              );
-
-
-            category.style.display =
-              visible.length === 0
-                ? "none"
-                : "";
-
-          }
-        );
-
-
-        noResult.style.display =
-          found === 0
-            ? "block"
-            : "none";
+        command.style.display = "none";
 
       }
-    );
 
-  </script>
+    });
+
+
+    categories.forEach(category => {
+
+      const visibleCommands =
+        category.querySelectorAll(
+          ".command:not([style*='display: none'])"
+        );
+
+      category.style.display =
+        visibleCommands.length
+        ? ""
+        : "none";
+
+    });
+
+
+    noResults.style.display =
+      found === 0
+      ? "block"
+      : "none";
+
+  });
+
+</script>
 
 </body>
 </html>
