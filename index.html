@@ -18,9 +18,9 @@
     }
 
     body {
-      font-family: Inter, Arial, sans-serif;
+      font-family: Arial, sans-serif;
       background: #08080d;
-      color: #ffffff;
+      color: white;
       overflow-x: hidden;
     }
 
@@ -37,7 +37,7 @@
 
       padding: 18px 7%;
 
-      background: rgba(8, 8, 13, 0.85);
+      background: rgba(8, 8, 13, 0.88);
       backdrop-filter: blur(15px);
 
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -91,7 +91,7 @@
     .hero {
       position: relative;
 
-      min-height: 85vh;
+      min-height: 82vh;
 
       display: flex;
       align-items: center;
@@ -111,7 +111,7 @@
       height: 500px;
 
       background: #7c3aed;
-      opacity: 0.13;
+      opacity: 0.14;
 
       filter: blur(130px);
       border-radius: 50%;
@@ -222,6 +222,63 @@
     .secondary:hover {
       transform: translateY(-3px);
       border-color: #555568;
+    }
+
+    /* STATS */
+
+    .stats-section {
+      padding: 0 7% 90px;
+    }
+
+    .stats-container {
+      max-width: 950px;
+      margin: auto;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 18px;
+    }
+
+    .stat {
+      text-align: center;
+
+      padding: 30px 15px;
+
+      background: linear-gradient(
+        145deg,
+        #12121a,
+        #0d0d13
+      );
+
+      border: 1px solid #242430;
+
+      border-radius: 18px;
+
+      transition: 0.3s;
+    }
+
+    .stat:hover {
+      transform: translateY(-5px);
+      border-color: #59427c;
+    }
+
+    .stat-number {
+      font-size: 34px;
+      font-weight: 800;
+
+      color: #b887ff;
+
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      color: #777783;
+      font-size: 14px;
+    }
+
+    .status-dot {
+      color: #65e58b;
     }
 
     /* SECTIONS */
@@ -349,12 +406,11 @@
 
       text-align: center;
 
-      background:
-        linear-gradient(
-          145deg,
-          #15121d,
-          #0e0e14
-        );
+      background: linear-gradient(
+        145deg,
+        #15121d,
+        #0e0e14
+      );
 
       border: 1px solid #292332;
 
@@ -433,6 +489,14 @@
         padding: 75px 20px;
       }
 
+      .stats-section {
+        padding: 0 20px 70px;
+      }
+
+      .stats-container {
+        grid-template-columns: 1fr;
+      }
+
       .cards {
         grid-template-columns: 1fr;
       }
@@ -461,14 +525,29 @@
   <nav>
 
     <div class="brand">
-      <div class="logo">🍨</div>
+
+      <div class="logo">
+        🍨
+      </div>
+
       Sundae<span>.</span>
+
     </div>
 
     <div class="nav-links">
-      <a href="#features">Fonctionnalités</a>
-      <a href="#commands">Commandes</a>
-      <a href="#support">Support</a>
+
+      <a href="#features">
+        Fonctionnalités
+      </a>
+
+      <a href="#commands">
+        Commandes
+      </a>
+
+      <a href="#support">
+        Support
+      </a>
+
     </div>
 
   </nav>
@@ -523,19 +602,80 @@
     </section>
 
 
+    <!-- STATS -->
+
+    <section class="stats-section">
+
+      <div class="stats-container">
+
+        <div class="stat">
+
+          <div
+            class="stat-number"
+            id="serverCount"
+          >
+            —
+          </div>
+
+          <div class="stat-label">
+            Serveurs
+          </div>
+
+        </div>
+
+
+        <div class="stat">
+
+          <div
+            class="stat-number"
+            id="userCount"
+          >
+            —
+          </div>
+
+          <div class="stat-label">
+            Utilisateurs
+          </div>
+
+        </div>
+
+
+        <div class="stat">
+
+          <div
+            class="stat-number status-dot"
+            id="botStatus"
+          >
+            ●
+          </div>
+
+          <div class="stat-label">
+            Sundae est en ligne
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
     <!-- FEATURES -->
 
     <section id="features">
 
       <div class="section-title">
 
-        <h2>Tout ce qu'il faut.</h2>
+        <h2>
+          Tout ce qu'il faut.
+        </h2>
 
         <p>
           Sundae apporte des fonctionnalités utiles à ton serveur.
         </p>
 
       </div>
+
 
       <div class="cards">
 
@@ -545,7 +685,9 @@
             🛡️
           </div>
 
-          <h3>Modération</h3>
+          <h3>
+            Modération
+          </h3>
 
           <p>
             Des outils pour aider les équipes de modération
@@ -561,11 +703,13 @@
             ⚙️
           </div>
 
-          <h3>Utilitaires</h3>
+          <h3>
+            Utilitaires
+          </h3>
 
           <p>
-            Des commandes pratiques pour gérer et consulter
-            facilement les informations de ton serveur.
+            Des commandes pratiques pour gérer facilement
+            les informations de ton serveur.
           </p>
 
         </div>
@@ -577,7 +721,9 @@
             🎉
           </div>
 
-          <h3>Fun</h3>
+          <h3>
+            Fun
+          </h3>
 
           <p>
             Des fonctionnalités amusantes pour rendre
@@ -593,7 +739,9 @@
             ⚡
           </div>
 
-          <h3>Rapide</h3>
+          <h3>
+            Rapide
+          </h3>
 
           <p>
             Une expérience simple avec des commandes
@@ -609,7 +757,9 @@
             🔒
           </div>
 
-          <h3>Simple</h3>
+          <h3>
+            Simple
+          </h3>
 
           <p>
             Pas besoin de passer des heures à comprendre
@@ -625,11 +775,12 @@
             🌐
           </div>
 
-          <h3>Public</h3>
+          <h3>
+            Public
+          </h3>
 
           <p>
-            Sundae est conçu pour être utilisé par
-            différentes communautés Discord.
+            Sundae est conçu pour différentes communautés Discord.
           </p>
 
         </div>
@@ -645,13 +796,16 @@
 
       <div class="section-title">
 
-        <h2>Commandes</h2>
+        <h2>
+          Commandes
+        </h2>
 
         <p>
-          Les commandes seront affichées ici lorsqu'elles seront disponibles.
+          Les commandes de Sundae arriveront bientôt.
         </p>
 
       </div>
+
 
       <div class="commands">
 
@@ -662,7 +816,7 @@
           </span>
 
           <span class="command-description">
-            Afficher les commandes de Sundae
+            Afficher les commandes
           </span>
 
         </div>
@@ -675,7 +829,7 @@
           </span>
 
           <span class="command-description">
-            Vérifier la latence du bot
+            Vérifier la latence
           </span>
 
         </div>
@@ -688,7 +842,7 @@
           </span>
 
           <span class="command-description">
-            De nouvelles commandes arrivent
+            Nouvelles commandes à venir
           </span>
 
         </div>
@@ -704,7 +858,9 @@
 
       <div class="support">
 
-        <h2>Besoin d'aide ?</h2>
+        <h2>
+          Besoin d'aide ?
+        </h2>
 
         <p>
           Rejoins le serveur officiel de Sundae
@@ -733,6 +889,26 @@
     © 2026 Sundae — Discord Bot
 
   </footer>
+
+
+  <!-- STATISTIQUES -->
+
+  <script>
+
+    /*
+      Les vrais chiffres seront ajoutés plus tard
+      grâce à l'API de Sundae.
+
+      Pour l'instant, le site affiche "—".
+    */
+
+    const serverCount = document.getElementById("serverCount");
+    const userCount = document.getElementById("userCount");
+
+    serverCount.textContent = "—";
+    userCount.textContent = "—";
+
+  </script>
 
 </body>
 </html>
