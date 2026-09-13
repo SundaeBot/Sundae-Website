@@ -13,138 +13,442 @@
       box-sizing: border-box;
     }
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #0b0b12;
-      color: white;
+    html {
+      scroll-behavior: smooth;
     }
 
+    body {
+      font-family: Inter, Arial, sans-serif;
+      background: #08080d;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    /* NAVBAR */
+
     nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 20px 7%;
-      background: #10101a;
-      border-bottom: 1px solid #252535;
+      justify-content: space-between;
+
+      padding: 18px 7%;
+
+      background: rgba(8, 8, 13, 0.85);
+      backdrop-filter: blur(15px);
+
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      font-size: 21px;
+      font-weight: 800;
     }
 
     .logo {
-      font-size: 25px;
-      font-weight: bold;
-    }
+      width: 40px;
+      height: 40px;
 
-    .logo span {
-      color: #a970ff;
-    }
-
-    nav a {
-      color: #ddd;
-      text-decoration: none;
-      margin-left: 20px;
-    }
-
-    .hero {
-      min-height: 80vh;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
-      text-align: center;
-      padding: 30px;
+      justify-content: center;
+
+      background: white;
+      border-radius: 11px;
+
+      font-size: 24px;
     }
 
-    .hero h1 {
-      font-size: 65px;
-      margin-bottom: 15px;
-    }
-
-    .hero h1 span {
+    .brand span {
       color: #a970ff;
     }
 
-    .hero p {
-      max-width: 600px;
-      color: #aaa;
-      font-size: 18px;
-      line-height: 1.6;
-      margin-bottom: 30px;
-    }
-
-    .buttons {
+    .nav-links {
       display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-      justify-content: center;
+      gap: 28px;
     }
 
-    .button {
-      padding: 14px 24px;
-      border-radius: 10px;
+    .nav-links a {
+      color: #aaa;
       text-decoration: none;
-      font-weight: bold;
-      background: #8b5cf6;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
       color: white;
     }
 
-    .button.secondary {
-      background: #20202c;
-      border: 1px solid #343447;
+    /* HERO */
+
+    .hero {
+      position: relative;
+
+      min-height: 85vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      padding: 80px 20px;
+
+      overflow: hidden;
     }
+
+    .glow {
+      position: absolute;
+
+      width: 500px;
+      height: 500px;
+
+      background: #7c3aed;
+      opacity: 0.13;
+
+      filter: blur(130px);
+      border-radius: 50%;
+
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+
+      max-width: 800px;
+
+      animation: appear 0.8s ease;
+    }
+
+    .hero-logo {
+      width: 95px;
+      height: 95px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin: 0 auto 25px;
+
+      background: white;
+      border-radius: 25px;
+
+      font-size: 55px;
+
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .hero h1 {
+      font-size: clamp(48px, 9vw, 90px);
+      line-height: 1;
+
+      margin-bottom: 25px;
+
+      letter-spacing: -4px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, #a970ff, #d09cff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      color: #9c9ca8;
+
+      font-size: 18px;
+      line-height: 1.7;
+
+      max-width: 650px;
+
+      margin: 0 auto 35px;
+    }
+
+    /* BUTTONS */
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 14px 23px;
+
+      border-radius: 12px;
+
+      text-decoration: none;
+
+      font-weight: 700;
+      font-size: 15px;
+
+      transition: 0.25s;
+    }
+
+    .primary {
+      background: #8b5cf6;
+      color: white;
+
+      box-shadow: 0 10px 30px rgba(139, 92, 246, 0.25);
+    }
+
+    .primary:hover {
+      transform: translateY(-3px);
+      background: #9b6cff;
+    }
+
+    .secondary {
+      background: #15151e;
+      color: white;
+
+      border: 1px solid #292936;
+    }
+
+    .secondary:hover {
+      transform: translateY(-3px);
+      border-color: #555568;
+    }
+
+    /* SECTIONS */
 
     section {
-      padding: 80px 7%;
+      padding: 100px 7%;
+    }
+
+    .section-title {
       text-align: center;
+      margin-bottom: 55px;
     }
 
-    section h2 {
-      font-size: 35px;
-      margin-bottom: 15px;
+    .section-title h2 {
+      font-size: 42px;
+      margin-bottom: 12px;
     }
 
-    section > p {
-      color: #999;
-      margin-bottom: 40px;
+    .section-title p {
+      color: #888894;
     }
+
+    /* CARDS */
 
     .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      max-width: 1000px;
+      max-width: 1100px;
       margin: auto;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 20px;
     }
 
     .card {
-      background: #13131d;
-      border: 1px solid #272735;
-      border-radius: 15px;
       padding: 30px;
-      text-align: left;
+
+      background: linear-gradient(
+        145deg,
+        #12121a,
+        #0d0d13
+      );
+
+      border: 1px solid #242430;
+
+      border-radius: 18px;
+
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: #59427c;
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #1d1728;
+
+      border-radius: 13px;
+
+      font-size: 23px;
+
+      margin-bottom: 20px;
     }
 
     .card h3 {
       margin-bottom: 10px;
+      font-size: 19px;
     }
 
     .card p {
-      color: #999;
-      line-height: 1.5;
+      color: #858592;
+      line-height: 1.6;
+      font-size: 14px;
     }
+
+    /* COMMANDS */
+
+    .commands {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .command {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 18px 20px;
+
+      margin-bottom: 12px;
+
+      background: #111119;
+
+      border: 1px solid #242430;
+
+      border-radius: 12px;
+    }
+
+    .command-name {
+      font-family: monospace;
+      color: #b887ff;
+      font-size: 15px;
+    }
+
+    .command-description {
+      color: #777783;
+      font-size: 14px;
+    }
+
+    /* SUPPORT */
+
+    .support {
+      max-width: 900px;
+      margin: auto;
+
+      padding: 60px 30px;
+
+      text-align: center;
+
+      background:
+        linear-gradient(
+          145deg,
+          #15121d,
+          #0e0e14
+        );
+
+      border: 1px solid #292332;
+
+      border-radius: 25px;
+    }
+
+    .support h2 {
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
+
+    .support p {
+      color: #8b8b97;
+      margin-bottom: 30px;
+    }
+
+    /* FOOTER */
 
     footer {
+      padding: 35px 7%;
+
+      border-top: 1px solid #1c1c25;
+
       text-align: center;
-      padding: 30px;
-      background: #10101a;
-      color: #777;
+
+      color: #666672;
+
+      font-size: 13px;
     }
 
-    @media (max-width: 600px) {
-      .hero h1 {
-        font-size: 45px;
+    /* ANIMATIONS */
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
       }
 
-      nav a {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+
+      .nav-links {
         display: none;
+      }
+
+      .hero {
+        min-height: 80vh;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      section {
+        padding: 75px 20px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title h2 {
+        font-size: 34px;
+      }
+
+      .command {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .support {
+        padding: 45px 20px;
       }
     }
   </style>
@@ -152,134 +456,282 @@
 
 <body>
 
-  <nav>
-    <div class="logo">🍨 <span>Sundae</span></div>
+  <!-- NAVBAR -->
 
-    <div>
+  <nav>
+
+    <div class="brand">
+      <div class="logo">🍨</div>
+      Sundae<span>.</span>
+    </div>
+
+    <div class="nav-links">
       <a href="#features">Fonctionnalités</a>
       <a href="#commands">Commandes</a>
       <a href="#support">Support</a>
     </div>
+
   </nav>
 
-  <section class="hero">
-    <h1>Meet <span>Sundae</span>.</h1>
 
-    <p>
-      Un bot Discord public, simple, rapide et conçu pour rendre
-      ton serveur encore meilleur.
-    </p>
+  <!-- HERO -->
 
-    <div class="buttons">
-      <a
-  class="button"
-  href="https://discord.com/oauth2/authorize?client_id=1548793958535004261&permissions=8&integration_type=0&scope=bot"
-  target="_blank"
->
-  Ajouter Sundae
-</a>
+  <main>
 
-      <a
-        class="button secondary"
-        href="https://discord.com/invite/csJF5vxT2z"
-        target="_blank"
-      >
-        Serveur Support
-      </a>
-    </div>
-  </section>
+    <section class="hero">
 
-  <section id="features">
-    <h2>Fonctionnalités</h2>
+      <div class="glow"></div>
 
-    <p>
-      Tout ce qu'il faut pour ton serveur Discord.
-    </p>
+      <div class="hero-content">
 
-    <div class="cards">
+        <div class="hero-logo">
+          🍨
+        </div>
 
-      <div class="card">
-        <h3>🛡️ Modération</h3>
+        <h1>
+          Meet <span>Sundae</span>.
+        </h1>
+
         <p>
-          Des commandes utiles pour garder ton serveur organisé.
+          Un bot Discord public, simple et puissant.
+          Donne à ton serveur les outils dont il a besoin
+          avec une expérience simple et agréable.
         </p>
+
+        <div class="buttons">
+
+          <a
+            class="button primary"
+            href="https://discord.com/oauth2/authorize?client_id=1548793958535004261&permissions=8&integration_type=0&scope=bot"
+            target="_blank"
+          >
+            Ajouter Sundae
+          </a>
+
+          <a
+            class="button secondary"
+            href="https://discord.com/invite/csJF5vxT2z"
+            target="_blank"
+          >
+            Serveur Support
+          </a>
+
+        </div>
+
       </div>
 
-      <div class="card">
-        <h3>⚙️ Utilitaires</h3>
+    </section>
+
+
+    <!-- FEATURES -->
+
+    <section id="features">
+
+      <div class="section-title">
+
+        <h2>Tout ce qu'il faut.</h2>
+
         <p>
-          Des commandes pratiques pour gérer facilement ton serveur.
+          Sundae apporte des fonctionnalités utiles à ton serveur.
         </p>
+
       </div>
 
-      <div class="card">
-        <h3>🎉 Fun</h3>
-        <p>
-          Des commandes amusantes pour rendre ton serveur plus vivant.
-        </p>
+      <div class="cards">
+
+        <div class="card">
+
+          <div class="icon">
+            🛡️
+          </div>
+
+          <h3>Modération</h3>
+
+          <p>
+            Des outils pour aider les équipes de modération
+            à garder leur serveur organisé.
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="icon">
+            ⚙️
+          </div>
+
+          <h3>Utilitaires</h3>
+
+          <p>
+            Des commandes pratiques pour gérer et consulter
+            facilement les informations de ton serveur.
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="icon">
+            🎉
+          </div>
+
+          <h3>Fun</h3>
+
+          <p>
+            Des fonctionnalités amusantes pour rendre
+            ton serveur encore plus vivant.
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="icon">
+            ⚡
+          </div>
+
+          <h3>Rapide</h3>
+
+          <p>
+            Une expérience simple avec des commandes
+            rapides et faciles à utiliser.
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="icon">
+            🔒
+          </div>
+
+          <h3>Simple</h3>
+
+          <p>
+            Pas besoin de passer des heures à comprendre
+            comment utiliser Sundae.
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="icon">
+            🌐
+          </div>
+
+          <h3>Public</h3>
+
+          <p>
+            Sundae est conçu pour être utilisé par
+            différentes communautés Discord.
+          </p>
+
+        </div>
+
       </div>
 
-      <div class="card">
-        <h3>🚀 Rapide</h3>
+    </section>
+
+
+    <!-- COMMANDS -->
+
+    <section id="commands">
+
+      <div class="section-title">
+
+        <h2>Commandes</h2>
+
         <p>
-          Sundae est pensé pour être simple et rapide à utiliser.
+          Les commandes seront affichées ici lorsqu'elles seront disponibles.
         </p>
+
       </div>
 
-    </div>
-  </section>
+      <div class="commands">
 
-  <section id="commands">
-    <h2>Commandes</h2>
+        <div class="command">
 
-    <p>
-      Découvre les commandes disponibles avec Sundae.
-    </p>
+          <span class="command-name">
+            /help
+          </span>
 
-    <div class="cards">
+          <span class="command-description">
+            Afficher les commandes de Sundae
+          </span>
 
-      <div class="card">
-        <h3>/help</h3>
-        <p>
-          Affiche la liste des commandes disponibles.
-        </p>
+        </div>
+
+
+        <div class="command">
+
+          <span class="command-name">
+            /ping
+          </span>
+
+          <span class="command-description">
+            Vérifier la latence du bot
+          </span>
+
+        </div>
+
+
+        <div class="command">
+
+          <span class="command-name">
+            Bientôt...
+          </span>
+
+          <span class="command-description">
+            De nouvelles commandes arrivent
+          </span>
+
+        </div>
+
       </div>
 
-      <div class="card">
-        <h3>/ping</h3>
+    </section>
+
+
+    <!-- SUPPORT -->
+
+    <section id="support">
+
+      <div class="support">
+
+        <h2>Besoin d'aide ?</h2>
+
         <p>
-          Vérifie la latence de Sundae.
+          Rejoins le serveur officiel de Sundae
+          pour obtenir de l'aide et suivre le projet.
         </p>
+
+        <a
+          class="button primary"
+          href="https://discord.com/invite/csJF5vxT2z"
+          target="_blank"
+        >
+          Rejoindre le serveur
+        </a>
+
       </div>
 
-      <div class="card">
-        <h3>/server</h3>
-        <p>
-          Affiche les informations du serveur.
-        </p>
-      </div>
+    </section>
 
-    </div>
-  </section>
+  </main>
 
-  <section id="support">
-    <h2>Besoin d'aide ?</h2>
 
-    <p>
-      Rejoins le serveur officiel de support de Sundae.
-    </p>
-
-    <a
-      class="button"
-      href="https://discord.com/invite/csJF5vxT2z"
-      target="_blank"
-    >
-      Rejoindre Discord
-    </a>
-  </section>
+  <!-- FOOTER -->
 
   <footer>
+
     © 2026 Sundae — Discord Bot
+
   </footer>
 
 </body>
